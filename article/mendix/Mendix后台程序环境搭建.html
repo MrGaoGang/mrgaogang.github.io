@@ -1,0 +1,808 @@
+
+<!DOCTYPE HTML>
+<html lang="zh-hans" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>4. Mendix后台程序环境搭建 · 高先生的博客</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        <meta name="author" content="Blankj">
+        
+        
+    
+    <link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-splitter/splitter.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchors/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-highlight/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-anchor-navigation-ex/style/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-search-pro/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-tbfed-pagefooter/footer.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-donate/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-pageview-count/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+                
+                <link rel="stylesheet" href="../../gitbook/gitbook-plugin-theme-api/theme-api.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    
+    <link rel="prev" href="widgets/常用API.html" />
+    
+
+    
+        <link rel="shortcut icon" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="bookmark" href='../../source/images/favicon.jpg' type="image/x-icon">
+    
+    
+        <link rel="apple-touch-icon" href='../../source/images/apple-touch-icon.jpg'>
+    
+    
+        
+        <link rel="apple-touch-icon" sizes="120x120" href="../../source/images/apple-touch-icon.jpg">
+        
+        <link rel="apple-touch-icon" sizes="180x180" href="../../source/images/apple-touch-icon.jpg">
+        
+    
+
+    <style>
+    @media only screen and (max-width: 640px) {
+        .book-header .hidden-mobile {
+            display: none;
+        }
+    }
+    </style>
+    <script>
+        window["gitbook-plugin-github-buttons"] = {"buttons":[{"user":"mrgaogang","repo":"lucky_docs","type":"star","size":"small","count":true}]};
+    </script>
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="输入并搜索" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="../../">
+            
+                <a href="../../">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">我的开源项目</li>
+        
+        
+    
+        <li class="chapter " data-level="2.1" data-path="../open/luckly_recyclerview.html">
+            
+                <a href="../open/luckly_recyclerview.html">
+            
+                    
+                    1. luckly_recyclerview
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.2" data-path="../open/luckly_popup_window.html">
+            
+                <a href="../open/luckly_popup_window.html">
+            
+                    
+                    2. luckly_popup_window
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="2.3" data-path="../open/vue_template.html">
+            
+                <a href="../open/vue_template.html">
+            
+                    
+                    3. Vue+iView开发基础包
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../vue/">
+            
+                <a href="../vue/">
+            
+                    
+                    一、Vue
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="3.1.1" data-path="../vue/Vue父组件使用scoped无法修改子组件样式.html">
+            
+                <a href="../vue/Vue父组件使用scoped无法修改子组件样式.html">
+            
+                    
+                    1. Vue父组件使用scoped无法修改子组件样式
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.2" data-path="../vue/Vue使用render函数渲染组件.html">
+            
+                <a href="../vue/Vue使用render函数渲染组件.html">
+            
+                    
+                    2. Vue使用render函数渲染组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="3.1.3" data-path="../vue/Vue中插件开发的四种方式.html">
+            
+                <a href="../vue/Vue中插件开发的四种方式.html">
+            
+                    
+                    3. Vue中插件开发的四种方式
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../javascript/README.md">
+            
+                <span>
+            
+                    
+                    二、JavaScript
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="5.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    三、轻量化平台Mendix
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.1" data-path="env.html">
+            
+                <a href="env.html">
+            
+                    
+                    1. Mendix环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.2" data-path="javaaction.html">
+            
+                <a href="javaaction.html">
+            
+                    
+                    2. Mendix使用Java
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3" data-path="widget.html">
+            
+                <a href="widget.html">
+            
+                    
+                    3. 组件开发
+            
+                </a>
+            
+
+            
+            <ul class="articles">
+                
+    
+        <li class="chapter " data-level="5.1.3.1" data-path="widgets/开发组件前工具的准备.html">
+            
+                <a href="widgets/开发组件前工具的准备.html">
+            
+                    
+                    1) 环境准备
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.2" >
+            
+                <a target="_blank" href="https://note.youdao.com/ynoteshare1/index.html?id=8abc67538746213f182025deccc118ca&type=note">
+            
+                    
+                    2) 开发组件之注意事项
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.3" data-path="widgets/Vue_Mendix.html">
+            
+                <a href="widgets/Vue_Mendix.html">
+            
+                    
+                    3) Vue开发Mendix组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.4" data-path="widgets/详细API.html">
+            
+                <a href="widgets/详细API.html">
+            
+                    
+                    4) 组件进阶-详细API
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.3.5" data-path="widgets/常用API.html">
+            
+                <a href="widgets/常用API.html">
+            
+                    
+                    5) 组件进阶-常用API
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        <li class="chapter active" data-level="5.1.4" data-path="Mendix后台程序环境搭建.html">
+            
+                <a href="Mendix后台程序环境搭建.html">
+            
+                    
+                    4. Mendix后台程序环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.5" >
+            
+                <a target="_blank" href="http://note.youdao.com/noteshare?id=a81aebe305706f8e6fd5a50638d7cf98">
+            
+                    
+                    5. 如何使用Mendix创建REST服务
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.6" data-path="获取配置信息,使用java创建Rest服务.html">
+            
+                <a href="获取配置信息,使用java创建Rest服务.html">
+            
+                    
+                    6. Mendix后台程序环境搭建
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="5.1.7" data-path="一些功能的实现.html">
+            
+                <a href="一些功能的实现.html">
+            
+                    
+                    7. Mendix教程（11篇文章）
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+    
+        
+        <li class="divider"></li>
+        
+        
+    
+        <li class="chapter " data-level="6.1" data-path="../android/README.md">
+            
+                <span>
+            
+                    
+                    四、Android
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+        
+        <li class="header">其他</li>
+        
+        
+    
+        <li class="chapter " data-level="7.1" data-path="../other/vscode.html">
+            
+                <a href="../other/vscode.html">
+            
+                    
+                    VsCode插件开发
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            本书使用 GitBook 发布
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="../.." >4. Mendix后台程序环境搭建</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><ul><li><span class="title-icon "></span><a href="#&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;"><b></b>&#x4E00;&#x3001;Docker&#x7684;&#x5B89;&#x88C5;</a></li><li><span class="title-icon "></span><a href="#&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;"><b></b>&#x4E8C;&#x3001;Docker Compose&#x5B89;&#x88C5;</a></li><li><span class="title-icon "></span><a href="#&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;"><b></b>&#x4E09;&#x3001;Mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;</a></li><li><span class="title-icon "></span><a href="#&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;"><b></b>&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;</a></li><li><span class="title-icon "></span><a href="#&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><b></b>&#x4E94;&#x3001;Mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><blockquote>
+<p>&#x4EE5;&#x4E0B;&#x6240;&#x6709;&#x6587;&#x4EF6;&#x5747;&#x662F;&#x539F;&#x521B;&#xFF0C;&#x5982;&#x9700;&#x8F6C;&#x8F7D;&#x8BF7;&#x6CE8;&#x660E;&#x4F5C;&#x8005;&#x548C;&#x94FE;&#x63A5;&#x5730;&#x5740;&#x3002;</p>
+</blockquote>
+<p>&#x76EE;&#x5F55;&#xFF1A;</p>
+<ul>
+<li>&#x4E00;&#x3001;Docker&#x7684;&#x5B89;&#x88C5;</li>
+<li>&#x4E8C;&#x3001;Docker Compose&#x5B89;&#x88C5;</li>
+<li>&#x4E09;&#x3001;Mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;</li>
+<li>&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;</li>
+<li>&#x4E94;&#x3001;Mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;<ul>
+<li>1&#x3001;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x5DF2;&#x88AB;&#x5360;&#x7528;</li>
+<li>2&#x3001;&#x767B;&#x5F55;&#x65F6;&#x4E3A;&#x4F55;&#x4F7F;&#x7528;Administor&#x65E0;&#x6CD5;&#x767B;&#x5F55;</li>
+<li>3&#x3001;docker-compose-mysql&#x5B57;&#x6BB5;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;</li>
+<li>4 &#x3001;&#x8BBF;&#x95EE;&#x5730;&#x5740;&#x4E3A;&#x4F55;&#x8FC7;&#x603B;&#x662F;&#x62A5;&#x9519;502</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p>&#x5F53;&#x5728;Mendix Desktop&#x4E0A;&#x7F16;&#x5199;&#x5B8C;&#x6210;&#x9879;&#x76EE;&#xFF0C;&#x6B64;&#x65F6;&#x9700;&#x8981;&#x6253;&#x5305;&#x53D1;&#x5E03;&#xFF1B;&#x9996;&#x5148;&#x8BF7;&#x5728;&#x5BA2;&#x6237;&#x7AEF; --&gt;Project--&gt;Create Deployement  Project&#xFF1B;
+<img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/WEBRESOURCE49021e83598f5daad897a346d65ebc63/33991" width="700" height="400" style="text-align:center"></p>
+</blockquote>
+<pre><code>Mendix&#x540E;&#x53F0;&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x8FD0;&#x884C;&#x5728;Docker&#x73AF;&#x5883;&#x4E0B;&#xFF0C;&#x6B64;&#x6587;&#x4E3B;&#x8981;&#x4ECB;&#x7ECD;mendix&#x5982;&#x4F55;&#x5728;centos&#x4E0B;&#x8FD0;&#x884C;&#x3002;
+&#x6253;&#x5305;&#x73AF;&#x5883;&#x5FC5;&#x987B;&#x4E3A;&#x751F;&#x4EA7;&#x73AF;&#x5883;&#xFF1A;
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/WEBRESOURCE0f4b5e4d659abfd9fb58184d49346712/33988" alt=""></p>
+<pre><code>Mendix&#x7A0B;&#x5E8F;&#x9700;&#x8981;&#x8FD0;&#x884C;&#x9700;&#x8981;&#x7684;&#x73AF;&#x5883;&#x9650;&#x5236;&#xFF1A;
+</code></pre><p>&#x5728;Centos7.3&#x53CA;&#x4EE5;&#x4E0A;&#x7248;&#x672C;,&#x4E14;Docker &#x8981;&#x6C42; CentOS &#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x6838;&#x7248;&#x672C;&#x9AD8;&#x4E8E; 3.10&#xFF1B;
+&#x7531;&#x4E8E;Mendix&#x8FD0;&#x884C;&#x7684;Docker compose&#x7248;&#x672C;&#x4E3A;1.22,&#x6240;&#x4EE5;&#x8BF7;&#x5B89;&#x88C5;Docker 17.06.2&#x3002;</p>
+<h3 id="&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;"><a name="&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;" class="plugin-anchor" href="#&#x4E00;&#x3001;docker&#x7684;&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E00;&#x3001;Docker&#x7684;&#x5B89;&#x88C5;</h3>
+<ul>
+<li>1&#x3001;Docker &#x8981;&#x6C42; CentOS &#x7CFB;&#x7EDF;&#x7684;&#x5185;&#x6838;&#x7248;&#x672C;&#x9AD8;&#x4E8E; 3.10 &#xFF0C;&#x67E5;&#x770B;&#x672C;&#x9875;&#x9762;&#x7684;&#x524D;&#x63D0;&#x6761;&#x4EF6;&#x6765;&#x9A8C;&#x8BC1;&#x4F60;&#x7684;CentOS &#x7248;&#x672C;&#x662F;&#x5426;&#x652F;&#x6301; Docker &#x3002;
+&#x901A;&#x8FC7; uname -r &#x547D;&#x4EE4;&#x67E5;&#x770B;&#x4F60;&#x5F53;&#x524D;&#x7684;&#x5185;&#x6838;&#x7248;&#x672C;
+$ uname -r</li>
+<li>2&#x3001;&#x4F7F;&#x7528; root &#x6743;&#x9650;&#x767B;&#x5F55; Centos&#x3002;&#x786E;&#x4FDD; yum &#x5305;&#x66F4;&#x65B0;&#x5230;&#x6700;&#x65B0;&#x3002;
+$ sudo yum update</li>
+<li>3&#x3001;&#x5378;&#x8F7D;&#x65E7;&#x7248;&#x672C;(&#x5982;&#x679C;&#x5B89;&#x88C5;&#x8FC7;&#x65E7;&#x7248;&#x672C;&#x7684;&#x8BDD;)
+$ sudo yum remove docker  docker-common docker-selinux docker-engine</li>
+<li>4&#x3001;&#x5B89;&#x88C5;&#x9700;&#x8981;&#x7684;&#x8F6F;&#x4EF6;&#x5305;&#xFF0C; yum-util &#x63D0;&#x4F9B;yum-config-manager&#x529F;&#x80FD;&#xFF0C;&#x53E6;&#x5916;&#x4E24;&#x4E2A;&#x662F;devicemapper&#x9A71;&#x52A8;&#x4F9D;&#x8D56;&#x7684;
+$ sudo yum install -y yum-utils device-mapper-persistent-data lvm2</li>
+<li><p>5&#x3001;&#x8BBE;&#x7F6E;yum&#x6E90;
+$ sudo yum-config-manager --add-repo <a href="https://download.docker.com/linux/centos/docker-ce.repo" target="_blank">https://download.docker.com/linux/centos/docker-ce.repo</a>
+<img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/F762973DA5CE4BD69D91C962DB0184CC/33878" alt=""></p>
+</li>
+<li><p>6&#x3001;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x6240;&#x6709;&#x4ED3;&#x5E93;&#x4E2D;&#x6240;&#x6709;docker&#x7248;&#x672C;&#xFF0C;&#x5E76;&#x9009;&#x62E9;&#x7279;&#x5B9A;&#x7248;&#x672C;&#x5B89;&#x88C5;
+$ yum list docker-ce --showduplicates | sort -r</p>
+</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/9633B2B29917464D891698FE75048B3E/33887" width="700" height="400"></p>
+<ul>
+<li>7&#x3001;&#x5B89;&#x88C5;docker
+$ sudo yum install docker-ce-17.06.2  #&#x5B89;&#x88C5;&#x7684;&#x662F;&#x6700;&#x65B0;&#x7A33;&#x5B9A;&#x7248;17.06.2</li>
+<li>8&#x3001;&#x542F;&#x52A8;&#x5E76;&#x52A0;&#x5165;&#x5F00;&#x673A;&#x542F;&#x52A8;
+$ sudo systemctl start docker
+$ sudo systemctl enable docker</li>
+<li>9&#x3001;&#x9A8C;&#x8BC1;&#x5B89;&#x88C5;&#x662F;&#x5426;&#x6210;&#x529F;(&#x6709;client&#x548C;service&#x4E24;&#x90E8;&#x5206;&#x8868;&#x793A;docker&#x5B89;&#x88C5;&#x542F;&#x52A8;&#x90FD;&#x6210;&#x529F;&#x4E86;)
+$ docker version</li>
+</ul>
+<p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/084DEBDFC501499594A581DB01C4AAF7/33885" width="600" height="400"></p>
+<h3 id="&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;"><a name="&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;" class="anchor-navigation-ex-anchor" href="#&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;" class="plugin-anchor" href="#&#x4E8C;&#x3001;docker-compose&#x5B89;&#x88C5;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E8C;&#x3001;Docker Compose&#x5B89;&#x88C5;</h3>
+<pre><code>&#x5728;&#x5B89;&#x88C5;Docker Compose&#x4E4B;&#x524D;&#x8BF7;&#x786E;&#x5B9A;&#x5DF2;&#x7ECF;&#x5B89;&#x88C5;&#x4E86;python-pip&#x3002;
+python-pip&#x5B89;&#x88C5;&#x6559;&#x7A0B;&#x8BF7;&#x89C1;&#x6B64;&#x6587;
+https://blog.csdn.net/yulei_qq/article/details/52984334
+
+&#x5B89;&#x88C5;&#x597D;pip&#x4E4B;&#x540E;&#xFF0C;&#x5C31;&#x53EF;&#x4EE5;&#x5B89;&#x88C5;Docker-Compose&#x4E86;.
+&#x5728;linunx&#x7EC8;&#x7AEF;&#x6267;&#x884C;&#xFF1A;pip install docker-compose.
+
+&#x68C0;&#x67E5;docker-compose&#x662F;&#x5426;&#x5B89;&#x88C5;&#x6210;&#x529F;&#xFF1A;
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/B2DB9061D02B442EB64E31E33287DEB8/33896" alt=""></p>
+<h3 id="&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;"><a name="&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;" class="anchor-navigation-ex-anchor" href="#&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;" class="plugin-anchor" href="#&#x4E09;&#x3001;mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E09;&#x3001;Mendix&#x73AF;&#x5883;&#x642D;&#x5EFA;</h3>
+<pre><code>Mendix&#x8FD0;&#x884C;&#x5728;docker&#x4E2D;&#xFF0C;&#x5176;&#x5F00;&#x6E90;&#x73AF;&#x5883;&#x8BF7;&#x89C1;:https://github.com/mendix/docker-mendix-buildpack&#x3002;
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/4003B12DA0294FE6B5325338F928F218/33903" alt="">
+    &#x5F00;&#x6E90;&#x5730;&#x5740;&#x7684;Readme.md&#x6587;&#x4EF6;&#x6709;&#x5982;&#x4E0B;&#x4ECB;&#x7ECD;&#xFF1A;</p>
+<p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/5C8F5B5FD9EB4C31BC354AE11F5C998D/33906" width="500" height="300">
+    &#x7B80;&#x5355;&#x4ECB;&#x7ECD;&#xFF1A;
+get-sample&#xFF1A;&#x5F97;&#x5230;&#x4E00;&#x4E2A;Mendix&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x89E3;&#x538B;&#x5230;build&#x76EE;&#x5F55;&#x4E0B;&#xFF1B;
+buid-image&#xFF1A;&#x521B;&#x5EFA;Mendix&#x8FD0;&#x884C;&#xFF0C;&#x9700;&#x8981;&#x7684;&#x955C;&#x50CF;&#xFF1B;
+run-container&#xFF1A;&#x542F;&#x52A8;&#x5BB9;&#x5668;&#x3002;</p>
+<pre><code>1&#x3001;&#x8BF7;&#x5C06;&#x60A8;&#x4E4B;&#x524D;&#x6253;&#x5305;&#x597D;&#x7684;mda&#x6587;&#x4EF6;&#x4E0A;&#x4F20;&#x5230;&#x670D;&#x52A1;&#x5668;
+scp xxx.mda root@ip&#x5730;&#x5740;:/usr/local/mendix/app
+(xxx&#xFF1A;&#x81EA;&#x5DF1;&#x7684;&#x5DE5;&#x7A0B;&#x540D;&#xFF1B;mendix/app&#x662F;&#x81EA;&#x5DF1;&#x521B;&#x5EFA;&#x7684;&#x76EE;&#x5F55;)
+
+2&#x3001;&#x590D;&#x5236;&#x9879;&#x76EE;&#x5E76;&#x5207;&#x6362;&#x76EE;&#x5F55;
+    git clone https://github.com/mendix/docker-mendix-buildpack
+cd docker-mendix-buildpack
+
+3&#x3001;&#x5C06;sample&#x7684;apk&#x66FF;&#x6362;&#x6210;&#x81EA;&#x5DF1;&#x7684;apk
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/7BD9499F9EEC482D9BEFB499E2AABE87/33916" alt="">
+    &#x66FF;&#x6362;&#x6210;&#xFF1A;
+    <img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/8C28E37E352443C9A1409AA56F95F80E/33919" width="600" height="400"></p>
+<pre><code>4&#x3001;&#x542F;&#x52A8;&#x5BB9;&#x5668;
+&#x8FD0;&#x884C;make run-container
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/420443281B1946668EFEBF59997A2C6E/33965" alt="">
+&#x6B63;&#x5E38;&#x60C5;&#x51B5;&#x4E0B;&#x5BB9;&#x5668;&#x4F1A;&#x88AB;&#x542F;&#x52A8;&#xFF0C;&#x8FD9;&#x6837;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;url&#x5730;&#x5740;&#x8BBF;&#x95EE;&#x81EA;&#x5DF1;&#x7684;&#x5E94;&#x7528;&#x7A0B;&#x5E8F;&#x3002;&#x4F46;&#x662F;&#x5728;&#x542F;&#x52A8;&#x65F6;&#x603B;&#x4F1A;&#x9047;&#x5230;&#x5404;&#x79CD;&#x95EE;&#x9898;&#x3002;</p>
+<h3 id="&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;"><a name="&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;" class="anchor-navigation-ex-anchor" href="#&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;" class="plugin-anchor" href="#&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x56DB;&#x3001;&#x542F;&#x52A8;&#x6210;&#x529F;</h3>
+<p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/121EB0D2F0ED4AC5A5FECE0B1DD4EB8B/33970" width="600" height="400"></p>
+<h3 id="&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><a name="&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;" class="anchor-navigation-ex-anchor" href="#&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;" class="plugin-anchor" href="#&#x4E94;&#x3001;mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;"><i class="fa fa-link" aria-hidden="true"></i></a>&#x4E94;&#x3001;Mendix&#x540E;&#x53F0;&#x73AF;&#x5883;&#x642D;&#x5EFA;&#x6CE8;&#x610F;&#x4E8B;&#x9879;</h3>
+<p>1&#x3001;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x5DF2;&#x88AB;&#x5360;&#x7528;
+    &#x7531;&#x4E8E;&#x5728;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x914D;&#x7F6E;&#x4E86;docker&#x7684;8080&#x6620;&#x5C04;&#x5230;&#x670D;&#x52A1;&#x5668;&#x7684;80&#x7AEF;&#x53E3;&#xFF0C;&#x4EE5;&#x53CA;8090&#x6620;&#x5C04;&#x5230;81&#x7AEF;&#x53E3;&#xFF1B;&#x6240;&#x4EE5;&#x8BF7;&#x786E;&#x8BA4;&#x670D;&#x52A1;&#x5668;&#x7684;&#x8FD9;&#x4E24;&#x4E2A;&#x7AEF;&#x53E3;&#x662F;&#x5426;&#x5DF2;&#x88AB;&#x5360;&#x7528;&#xFF08;&#x5982;&#x679C;&#x5DF2;&#x7ECF;&#x88AB;&#x5360;&#x7528;&#xFF1A;&#x53EF;&#x4FEE;&#x6539;&#x6B64;&#x5904;&#x7684;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF09;
+<img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/46ECE91F8DAD400F959D041A280D5BB7/33928" width="600" height="400"></p>
+<p>&#x5982;&#x679C;&#x4FEE;&#x6539;&#x6210;&#x5176;&#x4ED6;&#x7684;&#x7AEF;&#x53E3;&#xFF0C;&#x8BF7;&#x8BB0;&#x4FEE;&#x6539;Dockerfile&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#x4E2D;&#x7684;nginx&#x7AEF;&#x53E3;&#xFF1A;&#x5426;&#x5219;&#x7A0B;&#x5E8F;&#x4E0D;&#x4F1A;&#x5141;&#x8BB8;
+<img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/52B4C799667D44EA84BB4842E4C6CE5E/33933" width="600" height="400"></p>
+<p>3&#x3001;&#x767B;&#x5F55;&#x65F6;&#x4E3A;&#x4F55;&#x4F7F;&#x7528;Administor&#x65E0;&#x6CD5;&#x767B;&#x5F55;
+    mendix&#x5BA2;&#x6237;&#x7AEF;&#x7684;administor&#x8D26;&#x6237;&#x662F;&#x5728;&#x6D4B;&#x8BD5;&#x73AF;&#x5883;&#x4F7F;&#x7528;&#x7684;&#xFF1B;
+<img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/WEBRESOURCEa576049bb39f79bd36e779c46a55a82c/33994" width="600" height="400"></p>
+<pre><code>&#x5982;&#x679C;&#x7A0B;&#x5E8F;&#x53D1;&#x5E03;&#x5230;&#x670D;&#x52A1;&#x5668;&#xFF0C;
+&#x5219;&#x9700;&#x8981;&#x767B;&#x5F55;&#x7684;&#x8D26;&#x6237;&#x4E3A;&#xFF1A;MxAdmin
+&#x5BC6;&#x7801;&#x4E3A;&#xFF1A;docker-compose-mysql&#x4E2D;&#x7684;ADMIN_PASSWORD&#x5B57;&#x6BB5;
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/380AC56B7D7D47488CF173C32CA431CE/33943" width="600" height="400"></p>
+<pre><code>4&#x3001;docker-compose-mysql&#x5B57;&#x6BB5;&#x7B80;&#x8981;&#x4ECB;&#x7ECD;
+mendixapp:
+    image:&#x4E3A;docker&#x955C;&#x50CF;&#xFF1B;
+    ADMIN_PASSWORLD:&#x4F7F;&#x7528;MxAdmin&#x8D26;&#x6237;&#x767B;&#x5F55;&#x7CFB;&#x7EDF;&#x7684;&#x5BC6;&#x7801;&#xFF1B;
+    DATABASE_ENDPOINT&#xFF1A;&#x5E94;&#x7528;&#x7684;&#x6570;&#x636E;&#x5E93;&#x5730;&#x5740;&#xFF0C;&#x6700;&#x540E;&#x4E00;&#x4E2A;mendix&#x4E3A;&#x521B;&#x5EFA;&#x7684;mendix&#x6570;&#x636E;&#x5E93;&#xFF1B;
+    ports&#xFF1A;docker&#x7AEF;&#x53E3;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x53E3;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#xFF0C;&#x5982;&#x679C;&#x670D;&#x52A1;&#x5668;&#x7684;&#x7AEF;&#x53E3;&#x5DF2;&#x88AB;&#x5360;&#x7528;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x4FEE;&#x6539;&#x6620;&#x5C04;&#x7684;&#x7AEF;&#x53E3;&#xFF1B;
+
+db&#xFF1A;
+    MYSQL_DATABASE=mendix   //mendix&#x6570;&#x636E;&#x5E93;&#x540D;
+    MYSQL_USER&#xFF1A;mendix&#x6570;&#x636E;&#x5E93;&#x7684;&#x7528;&#x6237;
+    MYSQL_PASSWORD&#xFF1A;mendix&#x6570;&#x636E;&#x5E93;&#x7684;&#x5BC6;&#x7801;
+    MYSQL_ROOT_PASSWORD=root  //&#x6570;&#x636E;&#x5E93;&#x6700;&#x9AD8;&#x6743;&#x9650;&#x5BC6;&#x7801;&#xFF08;&#x5F53;&#x7136;&#x8D26;&#x53F7;&#x4E5F;&#x4E3A;root&#xFF09;
+    ports&#xFF1A;docker&#x4E2D;&#x6570;&#x636E;&#x5E93;&#x7AEF;&#x53E3;&#x548C;&#x670D;&#x52A1;&#x5668;&#x7AEF;&#x53E3;&#x7684;&#x6620;&#x5C04;&#x5173;&#x7CFB;&#x3002;
+
+5&#x3001;&#x8BBF;&#x95EE;&#x5730;&#x5740;&#x4E3A;&#x4F55;&#x8FC7;&#x603B;&#x662F;&#x62A5;&#x9519;502
+</code></pre><p><img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/30D1D8431E6447B2BA608D3CE0BE892C/33975" alt="">
+        &#x54EA;&#x4E9B;&#x60C5;&#x51B5;&#x51FA;&#x73B0;502:
+&#x8BBF;&#x95EE;&#x6B21;&#x6570;&#x8FC7;&#x591A;&#xFF1B;
+3&#x4E2A;&#x5C0F;&#x65F6;&#x5DE6;&#x53F3;&#x4F1A;&#x81EA;&#x52A8;&#x505C;&#x6B62;&#xFF1B;
+        &#x4E4B;&#x6240;&#x4EE5;&#x4E00;&#x76F4;&#x62A5;&#x9519;502&#x7684;&#x6700;&#x6839;&#x672C;&#x539F;&#x56E0;&#x662F;&#x6CA1;&#x6709;&#x5411;Mendix&#x8D2D;&#x4E70;license&#xFF1B;&#x6CA1;&#x6709;license &#x6700;&#x591A;&#x53EA;&#x80FD;&#x5728;&#x7EBF;10&#x4E2A;&#x7528;&#x6237;&#xFF0C;&#x4E14;&#x7CFB;&#x7EDF;&#x6BCF;&#x9694;3&#x5C0F;&#x65F6;&#x5DE6;&#x53F3;&#x5173;&#x95ED;&#x3002;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x5411;Mendix&#x8D2D;&#x4E70;License&#x3002;
+        &#x505C;&#x6B62;&#x4E86;&#xFF0C;&#x53EF;&#x91CD;&#x542F;&#x5BB9;&#x5668;
+    <img src="https://note.youdao.com/yws/public/resource/0987e4f96f6b436ed52b85016f1c84f8/xmlnote/5CB2EA5BE3CF415DA861F22FEE10DC87/35306" alt=""></p>
+<pre><code>    &#x91CD;&#x65B0;&#x90E8;&#x7F72;&#x5305;&#xFF0C;&#x5219;&#x9700;&#x8981;&#x5148;&#x5173;&#x95ED;mysql&#x5BB9;&#x5668;&#xFF0C;&#x518D;&#x4F7F;&#x7528;make run-container&#x3002;
+</code></pre><footer class="page-footer"><span class="copyright">Copyright &#xA9; gaogang 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x7AE0;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
+2019-04-28 22:32:46
+</span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"4. Mendix后台程序环境搭建","level":"5.1.4","depth":2,"next":{"title":"5. 如何使用Mendix创建REST服务","level":"5.1.5","depth":2,"url":"http://note.youdao.com/noteshare?id=a81aebe305706f8e6fd5a50638d7cf98","ref":"http://note.youdao.com/noteshare?id=a81aebe305706f8e6fd5a50638d7cf98","articles":[]},"previous":{"title":"5) 组件进阶-常用API","level":"5.1.3.5","depth":3,"path":"article/mendix/widgets/常用API.md","ref":"article/mendix/widgets/常用API.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","anchors","highlight","expandable-chapters-small","github","disqus","github-buttons","chapter-fold","sharing-plus","anchor-navigation-ex","favicon","-lunr","-search","search-pro","tbfed-pagefooter","klipse","donate","theme-api","pageview-count"],"styles":{"website":"./styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy gaogang 2019","modify_label":"文章修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"useIdentifier":false,"shortName":"gitbook-tutorial"},"github":{"url":"https://github.com/mrgaogang"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"donate":{"alipay":"/images/alipay.jpeg","alipayText":"支付宝捐赠","button":"赏赐","title":"","wechat":"/images/wechat.jpeg","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"./source/images/favicon.jpg","bookmark":"./source/images/favicon.jpg","appleTouch":"./source/images/apple-touch-icon.jpg","appleTouchMore":{"120x120":"./source/images/apple-touch-icon.jpg","180x180":"./source/images/apple-touch-icon.jpg"}},"page-toc-button":{"maxTocDepth":4,"minTocSize":2},"theme-api":{"languages":[],"split":true,"theme":"light"},"pageview-count":{},"github-buttons":{"buttons":[{"user":"mrgaogang","repo":"lucky_docs","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"weibo":true,"instapaper":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Blankj","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"高先生的博客","language":"zh-hans","links":{},"gitbook":"3.2.3","description":"Mrgao blogs"},"file":{"path":"article/mendix/Mendix后台程序环境搭建.md","mtime":"2019-04-28T14:32:46.216Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-04-28T14:42:32.814Z"},"basePath":"../..","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="../../gitbook/gitbook.js"></script>
+    <script src="../../gitbook/theme.js"></script>
+    
+        
+        <script src="../../gitbook/gitbook-plugin-splitter/splitter.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-expandable-chapters-small/expandable-chapters-small.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github/plugin.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-github-buttons/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-chapter-fold/chapter-fold.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-sharing-plus/buttons.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/jquery.mark.min.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-search-pro/search.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-donate/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-pageview-count/plugin.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+        
+        <script src="../../gitbook/gitbook-plugin-theme-api/theme-api.js"></script>
+        
+    
+
+    </body>
+</html>
+
