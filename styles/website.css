@@ -28,3 +28,7 @@
     border-color: transparent;
     text-decoration: none;
 }
+
+.markdown-section hr{
+    height: 1px;
+}
