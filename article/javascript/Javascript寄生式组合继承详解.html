@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>8. Object.create()和New的区别 · 高先生的博客</title>
+        <title>15. Javascript寄生式组合继承详解 · 高先生的博客</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -95,10 +95,10 @@
     <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="Javascript柯里化和偏函数实现.html" />
+    <link rel="next" href="../mendix/" />
     
     
-    <link rel="prev" href="对Object.create和类式继承的理解.html" />
+    <link rel="prev" href="Javascript模块化发展AMD,CMD,CommonJS,UMD,ES6.html" />
     
 
     
@@ -547,7 +547,7 @@
             
         </li>
     
-        <li class="chapter active" data-level="5.1.8" data-path="Object.create和New的区别.html">
+        <li class="chapter " data-level="5.1.8" data-path="Object.create和New的区别.html">
             
                 <a href="Object.create和New的区别.html">
             
@@ -638,7 +638,7 @@
             
         </li>
     
-        <li class="chapter " data-level="5.1.15" data-path="Javascript寄生式组合继承详解.html">
+        <li class="chapter active" data-level="5.1.15" data-path="Javascript寄生式组合继承详解.html">
             
                 <a href="Javascript寄生式组合继承详解.html">
             
@@ -914,7 +914,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../.." >8. Object.create()和New的区别</a>
+        <a href="../.." >15. Javascript寄生式组合继承详解</a>
     </h1>
 </div>
 
@@ -929,95 +929,71 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <div id="anchor-navigation-ex-navbar"><i class="fa fa-navicon"></i><ul><ul><ul><li><span class="title-icon "></span><a href="#objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;"><b></b>Object.create()&#x7684;polyfill&#x5B9E;&#x73B0;</a></li><li><span class="title-icon "></span><a href="#new"><b></b>New</a></li><li><span class="title-icon "></span><a href="#new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;"><b></b>New&#x548C;Object.create()&#x7684;&#x533A;&#x522B;</a></li></ul></ul></ul></div><a href="#" id="anchorNavigationExGoTop"><i class="fa fa-arrow-up"></i></a><blockquote>
-<p>&#x5F15;&#x7528;&#x5B98;&#x65B9;&#x7684;&#x4E00;&#x53E5;&#x8BDD;&#xFF1A;Object.create()&#x65B9;&#x6CD5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x4F7F;&#x7528;&#x73B0;&#x6709;&#x7684;&#x5BF9;&#x8C61;&#x6765;&#x63D0;&#x4F9B;&#x65B0;&#x521B;&#x5EFA;&#x7684;&#x5BF9;&#x8C61;&#x7684;<strong>proto</strong>&#x3002; 
-Object.create(proto, [propertiesObject])</p>
-<ul>
-<li>proto
-&#x65B0;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x539F;&#x578B;&#x5BF9;&#x8C61;&#x3002;</li>
-<li>propertiesObject
-&#x53EF;&#x9009;&#x3002;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x6307;&#x5B9A;&#x4E3A; undefined&#xFF0C;&#x5219;&#x662F;&#x8981;&#x6DFB;&#x52A0;&#x5230;&#x65B0;&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#x7684;&#x53EF;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#xFF08;&#x5373;&#x5176;&#x81EA;&#x8EAB;&#x5B9A;&#x4E49;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x800C;&#x4E0D;&#x662F;&#x5176;&#x539F;&#x578B;&#x94FE;&#x4E0A;&#x7684;&#x679A;&#x4E3E;&#x5C5E;&#x6027;&#xFF09;
-&#x5BF9;&#x8C61;&#x7684;&#x5C5E;&#x6027;&#x63CF;&#x8FF0;&#x7B26;&#x4EE5;&#x53CA;&#x76F8;&#x5E94;&#x7684;&#x5C5E;&#x6027;&#x540D;&#x79F0;&#x3002;&#x8FD9;&#x4E9B;&#x5C5E;&#x6027;&#x5BF9;&#x5E94;Object.defineProperties()&#x7684;&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;&#x3002;</li>
-</ul>
+                                <blockquote>
+<p>&#x4E5F;&#x8BB8;&#x4F60;&#x53EF;&#x80FD;&#x5728;&#x7F51;&#x4E0A;&#x770B;&#x5230;&#x4E00;&#x5927;&#x5806;&#x5BC4;&#x751F;&#x5F0F;&#x7EC4;&#x5408;&#x7EE7;&#x627F;&#x7684;&#x6837;&#x4F8B;&#xFF0C;&#x4F46;&#x662F;&#x5FC3;&#x4E2D;&#x4E00;&#x76F4;&#x6709;&#x56F0;&#x60D1;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x8981;&#x8FD9;&#x6837;&#x505A;&#xFF0C;&#x6B64;&#x7BC7;&#x6587;&#x7AE0;&#x4E5F;&#x8BB8;&#x80FD;&#x5E2E;&#x4F60;&#x4E86;&#x89E3;&#x4E3A;&#x4EC0;&#x4E48;&#x8FD9;&#x4E48;&#x5B9E;&#x73B0;&#x3002;</p>
 </blockquote>
-<h3 id="objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;"><a name="objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;" class="anchor-navigation-ex-anchor" href="#objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;" class="plugin-anchor" href="#objectcreate&#x7684;polyfill&#x5B9E;&#x73B0;"><i class="fa fa-link" aria-hidden="true"></i></a>Object.create()&#x7684;polyfill&#x5B9E;&#x73B0;</h3>
-<ul>
-<li>&#x65B9;&#x6CD5;&#x5185;&#x90E8;&#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x7A7A;&#x5BF9;&#x8C61;obj</li>
-<li>&#x5C06;obj.<strong>proto</strong>&#x7684;&#x5BF9;&#x8C61;&#x6307;&#x5411;&#x4F20;&#x5165;&#x7684;&#x53C2;&#x6570;proto</li>
-<li>&#x5C06;&#x4F20;&#x5165;&#x7684;&#x5BF9;&#x8C61;&#x5C5E;&#x6027;&#x590D;&#x5236;&#x5230;obj&#x5E76;&#x4E14;&#x8FD4;&#x56DE;obj</li>
-</ul>
-<pre><code class="lang-js"><span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> <span class="hljs-built_in">Object</span>.create !== <span class="hljs-string">&quot;function&quot;</span>) {
-    <span class="hljs-built_in">Object</span>.create = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params">proto, propertiesObject</span>) </span>{
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> proto !== <span class="hljs-string">&apos;object&apos;</span> &amp;&amp; <span class="hljs-keyword">typeof</span> proto !== <span class="hljs-string">&apos;function&apos;</span>) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">TypeError</span>(<span class="hljs-string">&apos;Object prototype may only be an Object: &apos;</span> + proto);
-        } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (proto === <span class="hljs-literal">null</span>) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;This browser&apos;s implementation of Object.create is a shim and doesn&apos;t support &apos;null&apos; as the first argument.&quot;</span>);
-        }
-
-        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">typeof</span> propertiesObject != <span class="hljs-string">&apos;undefined&apos;</span>) <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&quot;This browser&apos;s implementation of Object.create is a shim and doesn&apos;t support a second argument.&quot;</span>);
-        <span class="hljs-comment">//&#x6838;&#x5FC3;&#x662F;&#x4E0B;&#x9762;&#x7684;&#x4EE3;&#x7801;</span>
-        <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">F</span>(<span class="hljs-params"></span>) </span>{}
-        F.prototype = proto;
-        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> F();
-    };
+<p>&#x4E00;&#x4E2A;&#x5BC4;&#x751F;&#x5F0F;&#x7EC4;&#x5408;&#x7EE7;&#x627F;&#x7684;&#x4F8B;&#x5B50;&#xFF1A;</p>
+<pre><code class="lang-js">
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Foo</span>(<span class="hljs-params">name</span>) </span>{
+<span class="hljs-keyword">this</span>.name = name;
 }
+Foo.prototype.myName = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.name;
+};
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Bar</span>(<span class="hljs-params">name,label</span>) </span>{
+Foo.call( <span class="hljs-keyword">this</span>, name );
+<span class="hljs-keyword">this</span>.label = label;
+}
+<span class="hljs-comment">// &#x6211;&#x4EEC;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x7684;Bar.prototype &#x5BF9;&#x8C61;&#x5E76;&#x5173;&#x8054;&#x5230;Foo.prototype</span>
+Bar.prototype = <span class="hljs-built_in">Object</span>.create( Foo.prototype );
+<span class="hljs-comment">// &#x6CE8;&#x610F;&#xFF01;&#x73B0;&#x5728;&#x6CA1;&#x6709;Bar.prototype.constructor &#x4E86;</span>
+<span class="hljs-comment">// &#x5982;&#x679C;&#x4F60;&#x9700;&#x8981;&#x8FD9;&#x4E2A;&#x5C5E;&#x6027;&#x7684;&#x8BDD;&#x53EF;&#x80FD;&#x9700;&#x8981;&#x624B;&#x52A8;&#x4FEE;&#x590D;&#x4E00;&#x4E0B;&#x5B83;</span>
+Bar.prototype.constructor=Bar;
+Bar.prototype.myLabel = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
+<span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.label;
+};
+<span class="hljs-keyword">var</span> a = <span class="hljs-keyword">new</span> Bar( <span class="hljs-string">&quot;a&quot;</span>, <span class="hljs-string">&quot;obj a&quot;</span> );
+a.myName(); <span class="hljs-comment">// &quot;a&quot;</span>
+a.myLabel(); <span class="hljs-comment">// &quot;obj a&quot;/</span>
 </code></pre>
-<h3 id="new"><a name="new" class="anchor-navigation-ex-anchor" href="#new"><i class="fa fa-link" aria-hidden="true"></i></a><a name="new" class="plugin-anchor" href="#new"><i class="fa fa-link" aria-hidden="true"></i></a>New</h3>
+<p><strong>&#x7591;&#x95EE;1&#xFF1A;&#x4E3A;&#x4EC0;&#x4E48;this&#x6307;&#x5411;a?</strong></p>
 <blockquote>
-<p>&#x8BED;&#x6CD5;&#xFF1A; new constructor ( [aguments] ) 
-<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank">MDN&#x6587;&#x6863;</a></p>
+<p>&#x5982;&#x679C;&#x770B;&#x4E86;&#x4E4B;&#x524D;&#x7684;this&#x6307;&#x5411;&#x95EE;&#x9898;&#xFF0C;&#x90A3;&#x4E48;&#x5C31;&#x4F1A;&#x660E;&#x767D;new &#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x4F1A;&#x6539;&#x53D8;&#x51FD;&#x6570;this&#x6267;&#x884C;&#x5230;&#x5B9E;&#x4F8B;a&#x4E0A;&#x3002;</p>
 </blockquote>
-<p>&#x7531;&#x6B64;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x770B;&#x51FA;&#xFF0C;&#x5B9E;&#x9645;new&#x521B;&#x5EFA;&#x5BF9;&#x8C61;&#xFF0C;&#x5C31;&#x662F;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6765;&#x5B9E;&#x4F8B;&#x5316;&#xFF0C;&#x5728;&#x8C03;&#x7528;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x65F6;&#x5019;&#x4F1A;&#x6267;&#x884C;&#x4EE5;&#x4E0B;&#x64CD;&#x4F5C;&#xFF1A;</p>
-<ul>
-<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x7684;&#x5BF9;&#x8C61;</li>
-<li>&#x5C06;&#x65B0;&#x5BF9;&#x8C61;&#x6267;&#x884C;&#x539F;&#x578B;&#x64CD;&#x4F5C;&#xFF0C;&#x6307;&#x5411;&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x539F;&#x578B;</li>
-<li>&#x5C06;this&#x7ED1;&#x5B9A;&#x5230;&#x65B0;&#x5BF9;&#x8C61;&#x4E0A;&#xFF08;&#x53EF;&#x4EE5;&#x4F7F;&#x7528; call &#x6216;&#x8005; apply &#x5F3A;&#x5236;&#x8F6C;&#x6362;&#x6267;&#x884C;&#x73AF;&#x5883;&#xFF09;</li>
-<li>&#x6784;&#x9020;&#x51FD;&#x6570;&#x8FD4;&#x56DE;&#x7684;&#x5BF9;&#x8C61;&#x5C31;&#x662F;&#x5B9E;&#x4F8B;&#x5316;&#x7684;&#x7ED3;&#x679C;&#xFF0C;&#x5982;&#x679C;&#x6784;&#x9020;&#x51FD;&#x6570;&#x6CA1;&#x6709;&#x663E;&#x793A;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x5219;&#x8FD4;&#x56DE;&#x65B0;&#x7684;&#x5BF9;&#x8C61;</li>
-</ul>
-<p><strong>New&#x7684;polyfill&#x5B9E;&#x73B0;</strong></p>
-<pre><code class="lang-js"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_new_</span> (<span class="hljs-params"></span>)</span>{
-  <span class="hljs-keyword">var</span> obj = {},
-
-  Constructor = [].shift.call(<span class="hljs-built_in">arguments</span>);
-
-  obj.__proto__ = Constructor.prototype;
-
-  <span class="hljs-keyword">var</span> ret = Constructor.apply(obj, <span class="hljs-built_in">arguments</span>);
-
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> ret === <span class="hljs-string">&apos;object&apos;</span> ? ret : obj;
-}
-</code></pre>
-<h3 id="new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;"><a name="new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;" class="anchor-navigation-ex-anchor" href="#new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a><a name="new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;" class="plugin-anchor" href="#new&#x548C;objectcreate&#x7684;&#x533A;&#x522B;"><i class="fa fa-link" aria-hidden="true"></i></a>New&#x548C;Object.create()&#x7684;&#x533A;&#x522B;</h3>
-<table>
-<thead>
-<tr>
-<th>&#x6BD4;&#x8F83;</th>
-<th>new</th>
-<th>Object.create</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>&#x6784;&#x9020;&#x51FD;&#x6570;</td>
-<td>&#x4FDD;&#x7559;&#x539F;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5C5E;&#x6027;</td>
-<td>&#x4E22;&#x5931;&#x539F;&#x6784;&#x9020;&#x51FD;&#x6570;&#x5C5E;&#x6027;(&#x8FD9;&#x5C31;&#x662F;&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;&#x5BC4;&#x751F;&#x5F0F;&#x7EC4;&#x5408;&#x65F6;&#x9700;&#x8981;&#x91CD;&#x65B0;&#x8BBE;&#x7F6E;&#x6784;&#x9020;&#x51FD;&#x6570;)</td>
-</tr>
-<tr>
-<td>&#x539F;&#x578B;&#x94FE;</td>
-<td>&#x539F;&#x6784;&#x9020;&#x51FD;&#x6570;prototype&#x5C5E;&#x6027;</td>
-<td>&#x539F;&#x6784;&#x9020;&#x51FD;&#x6570;/&#xFF08;&#x5BF9;&#x8C61;&#xFF09;&#x672C;&#x8EAB;</td>
-</tr>
-<tr>
-<td>&#x4F5C;&#x7528;&#x5BF9;&#x8C61;</td>
-<td>function</td>
-<td>function&#x548C;object</td>
-</tr>
-</tbody>
-</table>
-<p>&#x53C2;&#x8003;&#xFF1A;
-<a href="https://blog.csdn.net/DepressedPrince/article/details/80909636" target="_blank">New &#x548C; Object.create()&#x7684;&#x533A;&#x522B;</a></p>
+<p><strong>Foo.call(this)&#x7684;&#x7406;&#x89E3;</strong></p>
+<blockquote>
+<p>&#x4F7F;&#x7528;Foo.call(this)&#x53EF;&#x4EE5;&#x6539;&#x53D8;Foo&#x51FD;&#x6570;&#x5185;&#x90E8;&#x7684;this&#x6307;&#x5411;&#xFF0C;&#x7531;&#x4E8E;this&#x6267;&#x884C;&#x7684;&#x662F;a&#xFF0C;&#x90A3;&#x4E48;&#x5728;&#x521D;&#x59CB;&#x5316;Foo&#x5185;&#x90E8;&#x51FD;&#x6570;&#x7684;&#x64CD;&#x4F5C;&#x65F6;&#xFF0C;&#x76F8;&#x5F53;&#x4E8E;a.name=name;&#x4F46;&#x662F;&#x6709;&#x4E00;&#x4E2A;&#x7F3A;&#x70B9;&#x5C31;&#x662F;Foo&#x7684;&#x539F;&#x578B;&#x94FE;&#x5E76;&#x6CA1;&#x6709;&#x7EE7;&#x627F;&#x5230;&#x3002;</p>
+</blockquote>
+<p>&#x5982;&#x679C;&#x4E0D;&#x4E86;&#x89E3;this&#x6307;&#x5411;&#x95EE;&#x9898;&#xFF0C;&#x53EF;&#x4EE5;&#x53C2;&#x8003;&#x4E00;&#x4E0B;&#x4E24;&#x4E2A;&#x6587;&#x7AE0;:
+<a href="https://mrgaogang.github.io/article/javascript/JavaScript%E4%B8%AD%E6%94%B9%E5%8F%98this%E6%8C%87%E5%90%91%E6%9C%89%E5%87%A0%E7%A7%8D%E6%96%B9%E5%BC%8F.html" target="_blank">JavaScript&#x4E2D;&#x6539;&#x53D8;this&#x6307;&#x5411;&#x6709;&#x51E0;&#x79CD;&#x65B9;&#x5F0F;</a>
+<a href="https://mrgaogang.github.io/article/javascript/Javascript%E4%B8%ADthis%E7%BB%91%E5%AE%9A%E8%AF%A6%E8%A7%A3.html" target="_blank">JavaScript&#x4E2D;this&#x7ED1;&#x5B9A;&#x8BE6;&#x89E3;</a></p>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x4E0D;&#x4F7F;&#x7528;Bar.prototype=Foo.prototype?</strong></p>
+<blockquote>
+<p>Bar.prototype = Foo.prototype &#x5E76;&#x4E0D;&#x4F1A;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x5173;&#x8054;&#x5230;Bar.prototype &#x7684;&#x65B0;&#x5BF9;&#x8C61;&#xFF0C;&#x5B83;&#x53EA;&#x662F;&#x8BA9;Bar.prototype &#x76F4;&#x63A5;&#x5F15;&#x7528;Foo.prototype &#x5BF9;&#x8C61;&#x3002;&#x56E0;&#x6B64;&#x5F53;&#x4F60;&#x6267;&#x884C;&#x7C7B;&#x4F3C;Bar.prototype.
+myLabel = ... &#x7684;&#x8D4B;&#x503C;&#x8BED;&#x53E5;&#x65F6;&#x4F1A;&#x76F4;&#x63A5;&#x4FEE;&#x6539;Foo.prototype &#x5BF9;&#x8C61;&#x672C;&#x8EAB;&#x3002;</p>
+<p>&#x7B80;&#x5355;&#x6765;&#x8BF4;&#xFF1A;<strong>&#x5982;&#x679C;&#x4F7F;&#x7528;&#x8FD9;&#x6837;&#x7684;&#x5F62;&#x5F0F;&#xFF0C;&#x90A3;&#x4E48;&#x4FEE;&#x6539;Bar.prototype&#x5C31;&#x4F1A;&#x5F71;&#x54CD;&#x5230;Foo.prototype&#xFF0C;&#x4F1A;&#x5F71;&#x54CD;&#x5230;Foo&#x5173;&#x8054;&#x7684;&#x5BF9;&#x8C61;</strong>&#xFF1B;</p>
+</blockquote>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;Object.create(Foo.prototype)&#x800C;&#x4E0D;&#x662F;new Foo&#xFF08;&#xFF09;</strong></p>
+<blockquote>
+<p>&#x4E0A;&#x9762;&#x8BB2;&#x4E86;&#xFF0C;Foo.call()&#x53EF;&#x4EE5;&#x89E3;&#x51B3;&#x5B9E;&#x4F8B;a&#xFF0C;&#x7EE7;&#x627F;Foo&#x51FD;&#x6570;&#x5185;&#x90E8;&#x7684;&#x5C5E;&#x6027;&#xFF0C;&#x4F46;&#x662F;&#x65E0;&#x6CD5;&#x7EE7;&#x627F;Foo&#x7684;&#x539F;&#x578B;&#x94FE;&#xFF1B;&#x6240;&#x4EE5;&#x9700;&#x8981;&#x4FEE;&#x6539;Bar.prototype&#xFF1B;
+&#x4F7F;&#x7528;Bar.prototype=new Foo();&#x7406;&#x8BBA;&#x4E0A;&#x662F;&#x53EF;&#x4EE5;&#x7684;&#xFF0C;&#x4F46;&#x662F;&#x4F1A;&#x9020;&#x6210;&#x4E24;&#x4E2A;&#x526F;&#x4F5C;&#x7528;</p>
+<ol>
+<li><strong>Foo&#x51FD;&#x6570;&#x88AB;&#x91CD;&#x590D;&#x8C03;&#x7528;</strong>&#x3002;&#x4F7F;&#x7528;Foo.call&#x5DF2;&#x7ECF;&#x8C03;&#x7528;&#x4E86;&#x4E00;&#x6B21;&#xFF0C;&#x518D;&#x6B21;&#x4F7F;&#x7528;new Foo&#xFF0C;&#x5176;&#x6784;&#x9020;&#x51FD;&#x6570;&#x4F1A;&#x518D;&#x6B21;&#x88AB;&#x8C03;&#x7528;&#xFF1B;</li>
+<li>&#x5982;&#x679C;&#x51FD;&#x6570;Foo &#x6709;&#x4E00;&#x4E9B;&#x526F;&#x4F5C;&#x7528;&#xFF08;&#x6BD4;&#x5982;&#x5199;&#x65E5;&#x5FD7;&#x3001;&#x4FEE;&#x6539;&#x72B6;&#x6001;&#x3001;&#x6CE8;
+&#x518C;&#x5230;&#x5176;&#x4ED6;&#x5BF9;&#x8C61;&#x3001;&#x7ED9;this &#x6DFB;&#x52A0;&#x6570;&#x636E;&#x5C5E;&#x6027;&#xFF0C;&#x7B49;&#x7B49;&#xFF09;&#x7684;&#x8BDD;&#xFF0C;&#x5C31;&#x4F1A;&#x5F71;&#x54CD;&#x5230;Bar() &#x7684;&#x201C;&#x540E;&#x4EE3;&#x201D;&#xFF0C;&#x540E;&#x679C;&#x4E0D;&#x582A;&#x8BBE;&#x60F3;&#x3002;</li>
+</ol>
+</blockquote>
+<p><strong>&#x4E3A;&#x4EC0;&#x4E48;&#x4F7F;&#x7528;Object.create?</strong></p>
+<blockquote>
+<p>&#x4F7F;&#x7528;Object.create()&#x53EF;&#x4EE5;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x6765;&#x63D0;&#x4F9B;prototype&#xFF0C;&#x5982;&#x679C;&#x4F60;&#x770B;&#x8FC7;Object.create&#x7684;polyfill&#x5C31;&#x4F1A;&#x660E;&#x767D;&#xFF0C;Object.create&#x53EA;&#x7EE7;&#x627F;&#x4E86;prototype&#x5E76;&#x6CA1;&#x6709;&#x8C03;&#x7528;Foo&#x6784;&#x9020;&#x51FD;&#x6570;&#x3002;</p>
+<p>Object.create()&#x4F1A;&#x9020;&#x6210;&#x7684;&#x4E00;&#x4E2A;&#x95EE;&#x9898;&#xFF1A;Bar.prototype.constructor&#x4F1A;&#x6539;&#x53D8;&#xFF0C;&#x4E3A;&#x4EC0;&#x4E48;&#x4F1A;&#x6539;&#x53D8;&#xFF1F;&#x5F15;&#x7528;<code>&#x4F60;&#x4E0D;&#x77E5;&#x9053;&#x7684;JavaScript&#x4E0A;</code>&#x4E2D;&#x7684;&#x4E00;&#x53E5;&#x8BDD;<strong>&#x5982;&#x679C;&#x4F60;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x65B0;&#x5BF9;&#x8C61;&#x5E76;&#x66FF;&#x6362;&#x4E86;&#x51FD;&#x6570;&#x9ED8;&#x8BA4;&#x7684;.prototype &#x5BF9;&#x8C61;&#x5F15;&#x7528;&#xFF0C;&#x90A3;&#x4E48;&#x65B0;&#x5BF9;&#x8C61;&#x5E76;&#x4E0D;&#x4F1A;&#x81EA;&#x52A8;&#x83B7;.constructor &#x5C5E;&#x6027;&#x3002;</strong></p>
+</blockquote>
+<p><a href="https://mrgaogang.github.io/article/javascript/%E5%AF%B9Object.create%E5%92%8C%E7%B1%BB%E5%BC%8F%E7%BB%A7%E6%89%BF%E7%9A%84%E7%90%86%E8%A7%A3.html" target="_blank">Object.create()&#x7684;&#x7406;&#x89E3;</a></p>
+<blockquote>
+<p>&#x90A3;&#x4E48;&#x5982;&#x4F55;&#x89E3;&#x51B3;&#x8FD9;&#x4E2A;&#x95EE;&#x9898; &#x5462;&#xFF1F;&#x76F4;&#x63A5;&#x4F7F;&#x7528;Bar.prototype.constructor=Bar&#x5C31;&#x53EF;&#x4EE5;&#x4E86;&#x3002;</p>
+</blockquote>
 <footer class="page-footer"><span class="copyright">Copyright &#xA9; gaogang 2019 all right reserved&#xFF0C;powered by Gitbook</span><span class="footer-modification">&#x6587;&#x7AE0;&#x4FEE;&#x8BA2;&#x65F6;&#x95F4;&#xFF1A;
-2019-07-09 21:33:34
+2019-07-12 20:17:56
 </span></footer> <link rel="stylesheet" type="text/css" href="https://storage.googleapis.com/app.klipse.tech/css/codemirror.css"> <script>     window.klipse_settings = {         selector: ".language-klipse, .lang-eval-clojure",         selector_eval_js: ".lang-eval-js",         selector_eval_python_client: ".lang-eval-python",         selector_eval_php: ".lang-eval-php",         selector_eval_scheme: ".lang-eval-scheme",         selector_eval_ruby: ".lang-eval-ruby",         selector_reagent: ".lang-reagent",        selector_google_charts: ".lang-google-chart",        selector_es2017: ".lang-eval-es2017",        selector_jsx: ".lang-eval-jsx",        selector_transpile_jsx: ".lang-transpile-jsx",        selector_render_jsx: ".lang-render-jsx",        selector_react: ".lang-react",        selector_eval_markdown: ".lang-render-markdown",        selector_eval_lambdaway: ".lang-render-lambdaway",        selector_eval_cpp: ".lang-eval-cpp",        selector_eval_html: ".lang-render-html",        selector_sql: ".lang-eval-sql",        selector_brainfuck: "lang-eval-brainfuck",        selector_js: ".lang-transpile-cljs"    }; </script> <script src="https://storage.googleapis.com/app.klipse.tech/plugin/js/klipse_plugin.js"></script>
                                 
                                 </section>
@@ -1051,7 +1027,7 @@ Object.create(proto, [propertiesObject])</p>
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"8. Object.create()和New的区别","level":"5.1.8","depth":2,"next":{"title":"9. Javascript柯里化和偏函数实现","level":"5.1.9","depth":2,"path":"article/javascript/Javascript柯里化和偏函数实现.md","ref":"article/javascript/Javascript柯里化和偏函数实现.md","articles":[]},"previous":{"title":"7. 对Object.create和类式继承的理解","level":"5.1.7","depth":2,"path":"article/javascript/对Object.create和类式继承的理解.md","ref":"article/javascript/对Object.create和类式继承的理解.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","anchors","highlight","expandable-chapters-small","github","github-buttons","chapter-fold","sharing-plus","anchor-navigation-ex","favicon","-lunr","splitter","-search","search-pro","tbfed-pagefooter","klipse","donate","theme-api","pageview-count"],"styles":{"website":"./styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy gaogang 2019","modify_label":"文章修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"shortName":"gitbook-tutorial"},"github":{"url":"https://github.com/mrgaogang"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"donate":{"alipay":"/images/alipay.jpeg","alipayText":"支付宝捐赠","button":"赏赐","title":"","wechat":"/images/wechat.jpeg","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"./source/images/favicon.jpg","bookmark":"./source/images/favicon.jpg","appleTouch":"./source/images/apple-touch-icon.jpg","appleTouchMore":{"120x120":"./source/images/apple-touch-icon.jpg","180x180":"./source/images/apple-touch-icon.jpg"}},"page-toc-button":{"maxTocDepth":4,"minTocSize":2},"theme-api":{"languages":[],"split":true,"theme":"light"},"pageview-count":{},"github-buttons":{"buttons":[{"user":"mrgaogang","repo":"lucky_docs","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"weibo":true,"instapaper":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Blankj","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"高先生的博客","language":"zh-hans","links":{},"gitbook":"3.2.3","description":"Mrgao blogs"},"file":{"path":"article/javascript/Object.create和New的区别.md","mtime":"2019-07-09T13:33:34.340Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-12T14:23:15.517Z"},"basePath":"../..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"15. Javascript寄生式组合继承详解","level":"5.1.15","depth":2,"next":{"title":"三、轻量化平台Mendix","level":"6.1","depth":1,"path":"article/mendix/README.md","ref":"article/mendix/README.md","articles":[{"title":"1. Mendix环境搭建","level":"6.1.1","depth":2,"path":"article/mendix/env.md","ref":"article/mendix/env.md","articles":[]},{"title":"2. Mendix使用Java","level":"6.1.2","depth":2,"path":"article/mendix/javaaction.md","ref":"article/mendix/javaaction.md","articles":[]},{"title":"3. 组件开发","level":"6.1.3","depth":2,"path":"article/mendix/widget.md","ref":"article/mendix/widget.md","articles":[{"title":"1) 环境准备","level":"6.1.3.1","depth":3,"path":"article/mendix/widgets/开发组件前工具的准备.md","ref":"article/mendix/widgets/开发组件前工具的准备.md","articles":[]},{"title":"2) 开发组件之注意事项","level":"6.1.3.2","depth":3,"url":"https://note.youdao.com/ynoteshare1/index.html?id=8abc67538746213f182025deccc118ca&type=note","ref":"https://note.youdao.com/ynoteshare1/index.html?id=8abc67538746213f182025deccc118ca&type=note","articles":[]},{"title":"3) Vue开发Mendix组件模板","level":"6.1.3.3","depth":3,"path":"article/mendix/widgets/Vue_Mendix.md","ref":"article/mendix/widgets/Vue_Mendix.md","articles":[]},{"title":"4) 组件进阶-详细API","level":"6.1.3.4","depth":3,"path":"article/mendix/widgets/详细API.md","ref":"article/mendix/widgets/详细API.md","articles":[]},{"title":"5) 组件进阶-常用API","level":"6.1.3.5","depth":3,"path":"article/mendix/widgets/常用API.md","ref":"article/mendix/widgets/常用API.md","articles":[]}]},{"title":"4. Mendix后台程序环境搭建","level":"6.1.4","depth":2,"path":"article/mendix/Mendix后台程序环境搭建.md","ref":"article/mendix/Mendix后台程序环境搭建.md","articles":[]},{"title":"5. 如何使用Mendix创建REST服务","level":"6.1.5","depth":2,"url":"http://note.youdao.com/noteshare?id=a81aebe305706f8e6fd5a50638d7cf98","ref":"http://note.youdao.com/noteshare?id=a81aebe305706f8e6fd5a50638d7cf98","articles":[]},{"title":"6. 使用Java创建Rest服务","level":"6.1.6","depth":2,"path":"article/mendix/获取配置信息,使用java创建Rest服务.md","ref":"article/mendix/获取配置信息,使用java创建Rest服务.md","articles":[]},{"title":"7. Mendix教程（11篇文章）","level":"6.1.7","depth":2,"path":"article/mendix/一些功能的实现.md","ref":"article/mendix/一些功能的实现.md","articles":[]}]},"previous":{"title":"14. Javascript模块化发展AMD,CMD,CommonJS,UMD,ES6","level":"5.1.14","depth":2,"path":"article/javascript/Javascript模块化发展AMD,CMD,CommonJS,UMD,ES6.md","ref":"article/javascript/Javascript模块化发展AMD,CMD,CommonJS,UMD,ES6.md","articles":[]},"dir":"ltr"},"config":{"plugins":["-sharing","splitter","anchors","highlight","expandable-chapters-small","github","github-buttons","chapter-fold","sharing-plus","anchor-navigation-ex","favicon","-lunr","splitter","-search","search-pro","tbfed-pagefooter","klipse","donate","theme-api","pageview-count"],"styles":{"website":"./styles/website.css","ebook":"styles/ebook.css","pdf":"styles/pdf.css","mobi":"styles/mobi.css","epub":"styles/epub.css"},"pluginsConfig":{"tbfed-pagefooter":{"copyright":"Copyright &copy gaogang 2019","modify_label":"文章修订时间：","modify_format":"YYYY-MM-DD HH:mm:ss"},"chapter-fold":{},"disqus":{"shortName":"gitbook-tutorial"},"github":{"url":"https://github.com/mrgaogang"},"splitter":{},"search-pro":{},"sharing-plus":{"qq":false,"all":["facebook","google","twitter","instapaper","linkedin","pocket","stumbleupon"],"douban":false,"facebook":true,"weibo":false,"instapaper":false,"whatsapp":false,"hatenaBookmark":false,"twitter":true,"messenger":false,"line":false,"vk":false,"pocket":true,"google":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"donate":{"alipay":"/images/alipay.jpeg","alipayText":"支付宝捐赠","button":"赏赐","title":"","wechat":"/images/wechat.jpeg","wechatText":"微信捐赠"},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"anchor-navigation-ex":{"associatedWithSummary":true,"float":{"floatIcon":"fa fa-navicon","level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"mode":"float","multipleH1":true,"pageTop":{"level1Icon":"","level2Icon":"","level3Icon":"","showLevelIcon":false},"printLog":false,"showGoTop":true,"showLevel":false},"favicon":{"shortcut":"./source/images/favicon.jpg","bookmark":"./source/images/favicon.jpg","appleTouch":"./source/images/apple-touch-icon.jpg","appleTouchMore":{"120x120":"./source/images/apple-touch-icon.jpg","180x180":"./source/images/apple-touch-icon.jpg"}},"page-toc-button":{"maxTocDepth":4,"minTocSize":2},"theme-api":{"languages":[],"split":true,"theme":"light"},"pageview-count":{},"github-buttons":{"buttons":[{"user":"mrgaogang","repo":"lucky_docs","type":"star","size":"small","count":true}]},"expandable-chapters-small":{},"klipse":{"myConfigKey":"it's the default value"},"sharing":{"qq":true,"weibo":true,"instapaper":false,"hatenaBookmark":false,"twitter":false,"messenger":false,"line":false,"vk":false,"pocket":false,"viber":false,"stumbleupon":false,"qzone":false,"linkedin":false},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false},"anchors":{}},"theme":"default","author":"Blankj","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"高先生的博客","language":"zh-hans","links":{},"gitbook":"3.2.3","description":"Mrgao blogs"},"file":{"path":"article/javascript/Javascript寄生式组合继承详解.md","mtime":"2019-07-12T12:17:56.311Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2019-07-12T14:23:15.517Z"},"basePath":"../..","book":{"language":""}});
         });
     </script>
 </div>
