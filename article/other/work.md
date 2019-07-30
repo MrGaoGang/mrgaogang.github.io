@@ -1,5 +1,6 @@
 
 ### 基础知识
+- tcp和udp协议的区别及应用场景
 - http
     - 三次握手和四次挥手
     - 常见的http状态码(101,200,201,202,301,302,400,401,403,404,408,409,500,501,503);
@@ -70,6 +71,8 @@
 - Vue和React的区别
 - 介绍一下Vuex和Redux，Mobx
 
+- React中Mobx autorun和reaction的区别
+- React中Mobx computed和autorun的区别
 
 ----
 ### 前端性能优化
