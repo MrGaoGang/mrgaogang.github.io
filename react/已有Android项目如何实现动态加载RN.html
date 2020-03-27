@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>小白学习：已有 Android 项目如何实现动态加载 RN bundle | 高先生的博客</title>
+    <meta name="description" content="旨在分享对技术的了解">
+    <meta name="generator" content="VuePress 1.3.1">
+    <link rel="icon" href="/images/oview/logo.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#3eaf7c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+  <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.c76a2eb7.css" as="style"><link rel="preload" href="/assets/js/app.f0a8e60e.js" as="script"><link rel="preload" href="/assets/js/2.79ae508a.js" as="script"><link rel="preload" href="/assets/js/89.2633409a.js" as="script"><link rel="prefetch" href="/assets/js/10.c9b701ac.js"><link rel="prefetch" href="/assets/js/100.572aae27.js"><link rel="prefetch" href="/assets/js/101.ceee73c7.js"><link rel="prefetch" href="/assets/js/102.b74fe283.js"><link rel="prefetch" href="/assets/js/103.0737a66e.js"><link rel="prefetch" href="/assets/js/104.567bdf3f.js"><link rel="prefetch" href="/assets/js/105.832bb389.js"><link rel="prefetch" href="/assets/js/106.9349e915.js"><link rel="prefetch" href="/assets/js/107.57206b01.js"><link rel="prefetch" href="/assets/js/11.1ea8f964.js"><link rel="prefetch" href="/assets/js/12.4921f46a.js"><link rel="prefetch" href="/assets/js/13.5b284fa0.js"><link rel="prefetch" href="/assets/js/14.569823b5.js"><link rel="prefetch" href="/assets/js/15.a88afdf4.js"><link rel="prefetch" href="/assets/js/16.a0d2a24e.js"><link rel="prefetch" href="/assets/js/17.d2773d2b.js"><link rel="prefetch" href="/assets/js/18.31181ec1.js"><link rel="prefetch" href="/assets/js/19.59ce070b.js"><link rel="prefetch" href="/assets/js/20.b1ad1401.js"><link rel="prefetch" href="/assets/js/21.f8c35c49.js"><link rel="prefetch" href="/assets/js/22.01921e6e.js"><link rel="prefetch" href="/assets/js/23.3065d4c3.js"><link rel="prefetch" href="/assets/js/24.a77facc3.js"><link rel="prefetch" href="/assets/js/25.7cdd9bd7.js"><link rel="prefetch" href="/assets/js/26.8f862c94.js"><link rel="prefetch" href="/assets/js/27.36c0efe2.js"><link rel="prefetch" href="/assets/js/28.d24f8988.js"><link rel="prefetch" href="/assets/js/29.caf2b318.js"><link rel="prefetch" href="/assets/js/3.b27b74ee.js"><link rel="prefetch" href="/assets/js/30.66dca4b0.js"><link rel="prefetch" href="/assets/js/31.e6f18b5a.js"><link rel="prefetch" href="/assets/js/32.4179606e.js"><link rel="prefetch" href="/assets/js/33.a9b34f19.js"><link rel="prefetch" href="/assets/js/34.57857444.js"><link rel="prefetch" href="/assets/js/35.41341c86.js"><link rel="prefetch" href="/assets/js/36.acb546ac.js"><link rel="prefetch" href="/assets/js/37.90caf1b4.js"><link rel="prefetch" href="/assets/js/38.3f4bb8ff.js"><link rel="prefetch" href="/assets/js/39.de403a1f.js"><link rel="prefetch" href="/assets/js/4.b5197cfd.js"><link rel="prefetch" href="/assets/js/40.2804b683.js"><link rel="prefetch" href="/assets/js/41.d8f4120b.js"><link rel="prefetch" href="/assets/js/42.dac9c9a3.js"><link rel="prefetch" href="/assets/js/43.df942b27.js"><link rel="prefetch" href="/assets/js/44.b3cd6e4a.js"><link rel="prefetch" href="/assets/js/45.23ff6445.js"><link rel="prefetch" href="/assets/js/46.55fd2a6c.js"><link rel="prefetch" href="/assets/js/47.1a658b69.js"><link rel="prefetch" href="/assets/js/48.1ef13ae6.js"><link rel="prefetch" href="/assets/js/49.c042ff5f.js"><link rel="prefetch" href="/assets/js/5.8c00075e.js"><link rel="prefetch" href="/assets/js/50.e1021dec.js"><link rel="prefetch" href="/assets/js/51.aae68ef5.js"><link rel="prefetch" href="/assets/js/52.c3e3ce7d.js"><link rel="prefetch" href="/assets/js/53.87a11e5a.js"><link rel="prefetch" href="/assets/js/54.692a53cf.js"><link rel="prefetch" href="/assets/js/55.db8b173f.js"><link rel="prefetch" href="/assets/js/56.69e42e5b.js"><link rel="prefetch" href="/assets/js/57.d04183fd.js"><link rel="prefetch" href="/assets/js/58.ead681b1.js"><link rel="prefetch" href="/assets/js/59.f8425bc8.js"><link rel="prefetch" href="/assets/js/6.8d79750a.js"><link rel="prefetch" href="/assets/js/60.cd23af00.js"><link rel="prefetch" href="/assets/js/61.57a3e58b.js"><link rel="prefetch" href="/assets/js/62.f7514918.js"><link rel="prefetch" href="/assets/js/63.df5c2e2f.js"><link rel="prefetch" href="/assets/js/64.659bb0ec.js"><link rel="prefetch" href="/assets/js/65.0c21b6f9.js"><link rel="prefetch" href="/assets/js/66.a961cea1.js"><link rel="prefetch" href="/assets/js/67.0bdfe232.js"><link rel="prefetch" href="/assets/js/68.f2667e54.js"><link rel="prefetch" href="/assets/js/69.9832b37b.js"><link rel="prefetch" href="/assets/js/7.ba1813c0.js"><link rel="prefetch" href="/assets/js/70.d33af35f.js"><link rel="prefetch" href="/assets/js/71.40fff769.js"><link rel="prefetch" href="/assets/js/72.5346640a.js"><link rel="prefetch" href="/assets/js/73.04593cf4.js"><link rel="prefetch" href="/assets/js/74.c2ef643e.js"><link rel="prefetch" href="/assets/js/75.1dffc33b.js"><link rel="prefetch" href="/assets/js/76.74af6067.js"><link rel="prefetch" href="/assets/js/77.e38709ac.js"><link rel="prefetch" href="/assets/js/78.11a133ca.js"><link rel="prefetch" href="/assets/js/79.b22086bf.js"><link rel="prefetch" href="/assets/js/8.de43e75a.js"><link rel="prefetch" href="/assets/js/80.f9509585.js"><link rel="prefetch" href="/assets/js/81.e4952bf5.js"><link rel="prefetch" href="/assets/js/82.69c89e6f.js"><link rel="prefetch" href="/assets/js/83.eee8877f.js"><link rel="prefetch" href="/assets/js/84.b7877e4f.js"><link rel="prefetch" href="/assets/js/85.e1d20db5.js"><link rel="prefetch" href="/assets/js/86.d7d7d6b5.js"><link rel="prefetch" href="/assets/js/87.64829399.js"><link rel="prefetch" href="/assets/js/88.6fae0b39.js"><link rel="prefetch" href="/assets/js/9.3be26985.js"><link rel="prefetch" href="/assets/js/90.b4970f93.js"><link rel="prefetch" href="/assets/js/91.bfaf737e.js"><link rel="prefetch" href="/assets/js/92.f0cd4707.js"><link rel="prefetch" href="/assets/js/93.13bbc5bf.js"><link rel="prefetch" href="/assets/js/94.a0a536b1.js"><link rel="prefetch" href="/assets/js/95.2319bda9.js"><link rel="prefetch" href="/assets/js/96.900a5070.js"><link rel="prefetch" href="/assets/js/97.dedbe8de.js"><link rel="prefetch" href="/assets/js/98.04d38b5b.js"><link rel="prefetch" href="/assets/js/99.07eb3dd4.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c76a2eb7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">高先生的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://gaogangsever.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  页面构建器
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/javascript/index.html" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/vue/index.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/react/index.html" class="nav-link">
+  React/RN
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Mendix" class="dropdown-title"><span class="title">Mendix</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mendix/index.html" class="nav-link">
+  1. Mendix介绍
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/widgets/index.html" class="nav-link">
+  2. 组件开发
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/study.html" class="nav-link">
+  3. Mendix学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开源" class="dropdown-title"><span class="title">开源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/article/oview/index.html" class="nav-link">
+  图表库oView
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_recyclerview" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_recyclerview
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_popup_window" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_popup_window
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/lucky_tools/blob/master/packages/mendix-cli/README.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue开发Mendix组件脚手架
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/KotlinGank" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  kotlin App
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/MrGaoGang/lucky_docs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://gaogangsever.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  页面构建器
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/javascript/index.html" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/vue/index.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/react/index.html" class="nav-link">
+  React/RN
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Mendix" class="dropdown-title"><span class="title">Mendix</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mendix/index.html" class="nav-link">
+  1. Mendix介绍
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/widgets/index.html" class="nav-link">
+  2. 组件开发
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/study.html" class="nav-link">
+  3. Mendix学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开源" class="dropdown-title"><span class="title">开源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/article/oview/index.html" class="nav-link">
+  图表库oView
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_recyclerview" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_recyclerview
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_popup_window" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_popup_window
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/lucky_tools/blob/master/packages/mendix-cli/README.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue开发Mendix组件脚手架
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/KotlinGank" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  kotlin App
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/MrGaoGang/lucky_docs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>小白学习：已有 Android 项目如何实现动态加载 RN bundle</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#一、rn-加载流程简析" class="sidebar-link">一、RN 加载流程简析</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#二、动态加载工程实现" class="sidebar-link">二、动态加载工程实现</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#_1、工程搭建" class="sidebar-link">1、工程搭建</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#_2、后端服务编写" class="sidebar-link">2、后端服务编写</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#_3、android-工程改造" class="sidebar-link">3、Android 工程改造</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#三、可能会遇到的问题及疑问" class="sidebar-link">三、可能会遇到的问题及疑问</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/react/%E5%B7%B2%E6%9C%89Android%E9%A1%B9%E7%9B%AE%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E5%8A%A8%E6%80%81%E5%8A%A0%E8%BD%BDRN.html#四、源码" class="sidebar-link">四、源码</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="小白学习：已有-android-项目如何实现动态加载-rn-bundle"><a href="#小白学习：已有-android-项目如何实现动态加载-rn-bundle" class="header-anchor">#</a> 小白学习：已有 Android 项目如何实现动态加载 RN bundle</h1> <p>作为小白的我学习 RNWeb 的过程中，在 Now 上看到调试 RN 时只需要输入 Bundle 名称和 module name 就可以打开 RN 页面进行调试，让我滋生了学习动态加载 bundle 展示 rn 页面的想法。在了解如何做动态加载之前，先简单了解一下 RN 加载流程。</p> <h2 id="一、rn-加载流程简析"><a href="#一、rn-加载流程简析" class="header-anchor">#</a> 一、RN 加载流程简析</h2> <p>在使用 RN cli 生成一个项目之后，程序的入口对应用进行注册</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> <span class="token punctuation">{</span> AppRegistry <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;react-native&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> App <span class="token keyword">from</span> <span class="token string">&quot;./App&quot;</span><span class="token punctuation">;</span>
+<span class="token keyword">import</span> <span class="token punctuation">{</span> name <span class="token keyword">as</span> appName <span class="token punctuation">}</span> <span class="token keyword">from</span> <span class="token string">&quot;./app.json&quot;</span><span class="token punctuation">;</span>
+
+AppRegistry<span class="token punctuation">.</span><span class="token function">registerComponent</span><span class="token punctuation">(</span>appName<span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> App<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>在<a href="https://github.com/facebook/react-native/blob/master/Libraries/ReactNative/AppRegistry.js" target="_blank" rel="noopener noreferrer">https://github.com/facebook/react-native/blob/master/Libraries/ReactNative/AppRegistry.js<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>中查看<code>registerComponent</code>源码得知，如果要注册多个 RN 应用需要确保<code>appName</code>的唯一性。</p> <div class="language-js extra-class"><pre class="language-js"><code>    <span class="token function">registerComponent</span><span class="token punctuation">(</span>
+        appKey<span class="token operator">:</span> string<span class="token punctuation">,</span>
+        componentProvider<span class="token operator">:</span> ComponentProvider<span class="token punctuation">,</span>
+        section<span class="token operator">?</span><span class="token operator">:</span> boolean<span class="token punctuation">,</span>
+      <span class="token punctuation">)</span><span class="token operator">:</span> string <span class="token punctuation">{</span>
+        <span class="token keyword">let</span> scopedPerformanceLogger <span class="token operator">=</span> <span class="token function">createPerformanceLogger</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    		<span class="token comment">//注册过的应用</span>
+        runnables<span class="token punctuation">[</span>appKey<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+          componentProvider<span class="token punctuation">,</span>
+          <span class="token function-variable function">run</span><span class="token operator">:</span> <span class="token parameter">appParameters</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{</span>
+            <span class="token function">renderApplication</span><span class="token punctuation">(</span>
+              <span class="token function">componentProviderInstrumentationHook</span><span class="token punctuation">(</span>
+                componentProvider<span class="token punctuation">,</span>
+                scopedPerformanceLogger<span class="token punctuation">,</span>
+              <span class="token punctuation">)</span><span class="token punctuation">,</span>
+              appParameters<span class="token punctuation">.</span>initialProps<span class="token punctuation">,</span>
+              appParameters<span class="token punctuation">.</span>rootTag<span class="token punctuation">,</span>
+              wrapperComponentProvider <span class="token operator">&amp;&amp;</span> <span class="token function">wrapperComponentProvider</span><span class="token punctuation">(</span>appParameters<span class="token punctuation">)</span><span class="token punctuation">,</span>
+              appParameters<span class="token punctuation">.</span>fabric<span class="token punctuation">,</span>
+              showArchitectureIndicator<span class="token punctuation">,</span>
+              scopedPerformanceLogger<span class="token punctuation">,</span>
+              appKey <span class="token operator">===</span> <span class="token string">'LogBox'</span><span class="token punctuation">,</span>
+            <span class="token punctuation">)</span><span class="token punctuation">;</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>section<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          sections<span class="token punctuation">[</span>appKey<span class="token punctuation">]</span> <span class="token operator">=</span> runnables<span class="token punctuation">[</span>appKey<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token keyword">return</span> appKey<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+</code></pre></div><p>上面已经简单知道了注册 RN 应用，需要传入一个<code>appName</code>和具体渲染的根组件，那么就<code>Android</code>而言，应用是如何启动的呢？打开 Android java 目录可以看到存在两个文件，一个是<code>MainActivity</code>和<code>MainApplication</code> ，熟悉 Android 开发的同学应该都知道<code>MainApplication</code>是一个应用启动类，而<code>MainActivity</code>是应用启动入口（在 AndroidManifast.xml 中注册过）；</p> <p>在<code>MainActivity</code>中需要<strong>返回应用的模块名称也就是在上面 RN 中注册的模块名称</strong>。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainActivity</span> <span class="token keyword">extends</span> <span class="token class-name">ReactActivity</span> <span class="token punctuation">{</span>
+
+      <span class="token comment">/**
+       * Returns the name of the main component registered from JavaScript. This is used to schedule
+       * rendering of the component.
+       */</span>
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;AwesomeProject&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>而<code>MainApplication</code>继承了<code>ReactApplication</code>，并实现了<code>getReactNativeHost</code>方法。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainApplication</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token keyword">implements</span> <span class="token class-name">ReactApplication</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ReactNativeHost</span> mReactNativeHost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactNativeHost</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+       <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+      <span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">public</span> <span class="token class-name">ReactNativeHost</span> <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> mReactNativeHost<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    		<span class="token comment">//官方描述为：自动检查和加载多个有依赖关系的so库文件；SoLoader的主要作用就是作为Java和Javascript两种程序语言之间的通信桥梁</span>
+        <span class="token class-name">SoLoader</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token comment">/* native exopackage */</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p><code>ReactNativeHost</code>是干嘛的？观看源码得知其本身就是一个抽象类，并且具有一系列的抽象方法<code>getJSMainModuleName</code>，<code>getPackages</code>，<code>getJSBundleFile</code>，<code>getBundleAssetName</code>；这似乎和我们想要实现动态加载 js bundle 有点契合，如果我们<strong>手动实现一个<code>ReactNativeHost</code>的类，复写<code>getJSMainModuleName</code>，<code>getBundleAssetName</code>，<code>getJSBundleFile</code>将具体的值改造成远程加载的 js bundle 名称，也许就可实现远程加载</strong>。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ReactNativeHost</span> <span class="token punctuation">{</span>
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span>
+      <span class="token class-name">JSIModulePackage</span> <span class="token function">getJSIModulePackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+
+      <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getJSMainModuleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;index.android&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getBundleAssetName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;index.android.bundle&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>由于我们是在已有 Android 基础上使用 RN 页面，当点击某个按钮/某个功能的情况下才会加载对应的 js 文件，这似乎在<code>MainApplication</code>处写<code>ReactNativeHost</code>不大合适，那么有没有可能在在一个<code>Activity</code>里面返回自定义的<code>ReactNativeHost</code>的呢？</p> <p>答案是有的。</p> <p>让我们再来看一下啊<code>MainActivity</code>，他继承了 <code>ReactActivity</code>，打开<code>ReactActivity</code>一看，卧槽，就是一个抽象类。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">/**
+     * Base Activity for React Native applications.
+     */</span>
+    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ReactActivity</span> <span class="token keyword">extends</span> <span class="token class-name">Activity</span>
+        <span class="token keyword">implements</span> <span class="token class-name">DefaultHardwareBackBtnHandler</span><span class="token punctuation">,</span> <span class="token class-name">PermissionAwareActivity</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ReactActivityDelegate</span> mDelegate<span class="token punctuation">;</span>
+
+      <span class="token keyword">protected</span> <span class="token class-name">ReactActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mDelegate <span class="token operator">=</span> <span class="token function">createReactActivityDelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token class-name">ReactActivityDelegate</span> <span class="token function">createReactActivityDelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ReactActivityDelegate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token class-name">Bundle</span> savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mDelegate<span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//此处省略一些生命周期函数</span>
+      <span class="token keyword">protected</span> <span class="token keyword">final</span> <span class="token keyword">void</span> <span class="token function">loadApp</span><span class="token punctuation">(</span><span class="token class-name">String</span> appKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mDelegate<span class="token punctuation">.</span><span class="token function">loadApp</span><span class="token punctuation">(</span>appKey<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>其主要作用：</p> <ol><li>提供  <code>getMainComponentName</code>  方法的声明</li> <li>创建  <code>ReactActivityDelegate</code>  实例，便于把具体的功能全<strong>委托</strong>给  <code>ReactActivityDelegate</code>  类来处理</li></ol> <p>既然他把所以的工作都委托给了<code>ReactActivityDelegate</code>那么我们可以在<code>ReactActivityDelegate</code>中找到<code>ReactNativeHost</code>的实例吗？</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">//ReactActivityDelegate源码</span>
+
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">ReactActivityDelegate</span> <span class="token punctuation">{</span>
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//省略一些初始化</span>
+      <span class="token keyword">protected</span> <span class="token class-name">ReactRootView</span> <span class="token function">createRootView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ReactRootView</span><span class="token punctuation">(</span><span class="token function">getContext</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">//正是我们要找的ReactNativeHost</span>
+      <span class="token keyword">protected</span> <span class="token class-name">ReactNativeHost</span> <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token class-name">ReactApplication</span><span class="token punctuation">)</span> <span class="token function">getPlainActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">public</span> <span class="token class-name">ReactInstanceManager</span> <span class="token function">getReactInstanceManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getReactInstanceManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token class-name">Bundle</span> savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mMainComponentName <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token function">loadApp</span><span class="token punctuation">(</span>mMainComponentName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        mDoubleTapReloadRecognizer <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DoubleTapReloadRecognizer</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">loadApp</span><span class="token punctuation">(</span><span class="token class-name">String</span> appKey<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>mReactRootView <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          <span class="token keyword">throw</span> <span class="token keyword">new</span> <span class="token class-name">IllegalStateException</span><span class="token punctuation">(</span><span class="token string">&quot;Cannot loadApp while app is already running.&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        mReactRootView <span class="token operator">=</span> <span class="token function">createRootView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mReactRootView<span class="token punctuation">.</span><span class="token function">startReactApplication</span><span class="token punctuation">(</span>
+          <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getReactInstanceManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          appKey<span class="token punctuation">,</span>
+          <span class="token function">getLaunchOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">getPlainActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setContentView</span><span class="token punctuation">(</span>mReactRootView<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//省略一些生命周期函数执行</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>在查看<code>ReactActivityDelegate</code>的源码中我们发现了<code>getReactNativeHost</code>方法，那么是不是意味着我们可以在 Activity 中重写<code>ReactNativeHost</code>。</p> <p>在<code>ReactActivityDelegate</code>中我们可以看到 RN 应用加载的核心逻辑其实就两句话:<strong>创建视图并加载对应 Bundle 文件。</strong></p> <div class="language-java extra-class"><pre class="language-java"><code>     mReactRootView <span class="token operator">=</span> <span class="token function">createRootView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//ReactRootView是一个自定义View，且继承自FrameLayout</span>
+     mReactRootView<span class="token punctuation">.</span><span class="token function">startReactApplication</span><span class="token punctuation">(</span>
+          <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getReactInstanceManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          appKey<span class="token punctuation">,</span>
+          <span class="token function">getLaunchOptions</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre></div><p>问题来了<code>ReactNativeHost</code>到时是干什么的？<code>ReactInstanceManager</code>又是干什么的？查看源码得知，核心在于<code>ReactInstanceManager</code>，这个类<strong>管理 <code>CatalystInstance</code> 的实例。他通过 ReactPackage 对外暴露一种设置 catalyst 实例的方式，并且跟踪实例的生命周期。</strong></p> <p>看了源码发现动态加载的核心在如何创建一个<code>**CatalystInstance**</code>实例，其中主要包括设置 js 模块的路径，应用上下文信息等</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ReactNativeHost</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">Application</span> mApplication<span class="token punctuation">;</span>
+      <span class="token keyword">private</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">ReactInstanceManager</span> mReactInstanceManager<span class="token punctuation">;</span>
+
+    	 <span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span> <span class="token comment">//此处省略</span>
+
+      <span class="token keyword">protected</span> <span class="token class-name">ReactInstanceManager</span> <span class="token function">createReactInstanceManager</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token class-name">ReactMarker</span><span class="token punctuation">.</span><span class="token function">logMarker</span><span class="token punctuation">(</span><span class="token class-name">ReactMarkerConstants</span><span class="token punctuation">.</span>BUILD_REACT_INSTANCE_MANAGER_START<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ReactInstanceManagerBuilder</span> builder <span class="token operator">=</span>
+            <span class="token class-name">ReactInstanceManager</span><span class="token punctuation">.</span><span class="token function">builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                <span class="token punctuation">.</span><span class="token function">setApplication</span><span class="token punctuation">(</span>mApplication<span class="token punctuation">)</span><span class="token comment">//设置应用上下文</span>
+                <span class="token punctuation">.</span><span class="token function">setJSMainModulePath</span><span class="token punctuation">(</span><span class="token function">getJSMainModuleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//设置需要加载的js bundle路径</span>
+                <span class="token punctuation">.</span><span class="token function">setUseDeveloperSupport</span><span class="token punctuation">(</span><span class="token function">getUseDeveloperSupport</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//是否开启dev模式</span>
+                <span class="token punctuation">.</span><span class="token function">setRedBoxHandler</span><span class="token punctuation">(</span><span class="token function">getRedBoxHandler</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">//设置红盒回调，dev模式才会有红屏展示</span>
+                <span class="token punctuation">.</span><span class="token function">setJavaScriptExecutorFactory</span><span class="token punctuation">(</span><span class="token function">getJavaScriptExecutorFactory</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">// 设置 js 的执行器工厂实例，为后续加载和解析 js bundle 作准备</span>
+                <span class="token punctuation">.</span><span class="token function">setUIImplementationProvider</span><span class="token punctuation">(</span><span class="token function">getUIImplementationProvider</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token comment">// 设置UI实现机制的Provider</span>
+                <span class="token punctuation">.</span><span class="token function">setJSIModulesPackage</span><span class="token punctuation">(</span><span class="token function">getJSIModulePackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token comment">//设置js模块到jsbridge中</span>
+                <span class="token punctuation">.</span><span class="token function">setInitialLifecycleState</span><span class="token punctuation">(</span><span class="token class-name">LifecycleState</span><span class="token punctuation">.</span>BEFORE_CREATE<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//初始化生命周期</span>
+
+        <span class="token keyword">for</span> <span class="token punctuation">(</span><span class="token class-name">ReactPackage</span> reactPackage <span class="token operator">:</span> <span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          builder<span class="token punctuation">.</span><span class="token function">addPackage</span><span class="token punctuation">(</span>reactPackage<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token class-name">String</span> jsBundleFile <span class="token operator">=</span> <span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">if</span> <span class="token punctuation">(</span>jsBundleFile <span class="token operator">!=</span> <span class="token keyword">null</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+          builder<span class="token punctuation">.</span><span class="token function">setJSBundleFile</span><span class="token punctuation">(</span>jsBundleFile<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+          builder<span class="token punctuation">.</span><span class="token function">setBundleAssetName</span><span class="token punctuation">(</span><span class="token class-name">Assertions</span><span class="token punctuation">.</span><span class="token function">assertNotNull</span><span class="token punctuation">(</span><span class="token function">getBundleAssetName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+        <span class="token class-name">ReactInstanceManager</span> reactInstanceManager <span class="token operator">=</span> builder<span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">ReactMarker</span><span class="token punctuation">.</span><span class="token function">logMarker</span><span class="token punctuation">(</span><span class="token class-name">ReactMarkerConstants</span><span class="token punctuation">.</span>BUILD_REACT_INSTANCE_MANAGER_END<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> reactInstanceManager<span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">JSIModulePackage</span> <span class="token function">getJSIModulePackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getJSMainModuleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;index.android&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getBundleAssetName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token string">&quot;index.android.bundle&quot;</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+</code></pre></div><p>好啦，基础部分暂时就到这里啦，再往下写就得偏题啦。</p> <h2 id="二、动态加载工程实现"><a href="#二、动态加载工程实现" class="header-anchor">#</a> 二、动态加载工程实现</h2> <p>有了上面的解决办法，那我们开始整理一下这个工程实现的思路。</p> <ol><li><strong>工程搭建</strong> <ul><li>搭建 2 个 RN 工程，并打离线包作为 app 动态加载 RN 的资源文件；</li> <li>搭建一个<code>Android</code>工程，用于编写加载逻辑（为了方便，就直接使用<code>react-native</code>创建一个 rn 工程，我们只使用其中的<code>android</code>部分）</li> <li>使用 express 或者 koa 搭建一个后端服务返回模块信息和对应的离线包；</li></ul></li> <li><strong>编写 app 端主逻辑</strong> <ul><li>使用 RecyclerView 呈现出一个列表（其中包括 adapter 编写，使用 okhttp 请求服务端数据）</li> <li>点击列表中每一项向后端服务请求对应的 RN 离线包</li> <li>下载完成离线包解压缩，并跳转到 RN 对应的 Activity</li></ul></li> <li><strong>编写 RN 加载的 Activity</strong> <ul><li>复写 createReactActivityDelegate 返回自定义 ReacActivity 的委托</li> <li>自定义 ReactNativeHost 修改 js bundle 对应加载逻辑；</li></ul></li></ol> <p>其主要流程如下：</p> <p><img src="/images/react/rn-dynamic/RN.png" alt=""></p> <h2 id="_1、工程搭建"><a href="#_1、工程搭建" class="header-anchor">#</a> 1、工程搭建</h2> <p>首先让我们建立两个 rn 工程：</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    react-native init module_1 <span class="token comment">#第一个RN工程</span>
+    react-native init module_2 <span class="token comment">#第二个RN工程</span>
+
+    react-native init app <span class="token comment"># 主工程（为了省去自建Android项目的过程及rn相关依赖）</span>
+
+    express mock_server <span class="token comment"># 创建一个后端服务</span>
+</code></pre></div><p><strong>打离线包</strong></p> <div class="language-bash extra-class"><pre class="language-bash"><code>    <span class="token comment"># model_1工程，打离线包并且压缩成zip (zip -q -r -o module_1.zip ./module_1 非Mac的同学可以删掉这句话)</span>
+    react-native bundle --entry-file index.js --bundle-output ./module_1/module_1.bundle --platform android --assets-dest ./module_1 --dev <span class="token boolean">false</span>  <span class="token function">zip</span> -q -r -o module_1.zip ./module_1
+    <span class="token comment"># model_2工程</span>
+    react-native bundle --entry-file index.js --bundle-output ./module_2/module_2.bundle --platform android --assets-dest ./module_2 --dev <span class="token boolean">false</span>  <span class="token function">zip</span> -q -r -o module_2.zip ./module_2
+</code></pre></div><p>如何打离线包？离线包的命令都是些啥？输入<code>react-native bundle —help</code>就知道咯</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    react-native bundle <span class="token punctuation">[</span>参数<span class="token punctuation">]</span>
+      构建 js 离线包
+
+      Options:
+
+        -h, --help                   输出如何使用的信息
+        --entry-file <span class="token operator">&lt;</span>path<span class="token operator">&gt;</span>          RN入口文件的路径, 绝对路径或相对路径
+        --platform <span class="token punctuation">[</span>string<span class="token punctuation">]</span>          ios 或 andorid
+        --transformer <span class="token punctuation">[</span>string<span class="token punctuation">]</span>       Specify a custom transformer to be used
+        --dev <span class="token punctuation">[</span>boolean<span class="token punctuation">]</span>              如果为false, 警告会不显示并且打出的包的大小会变小
+        --prepack                    当通过时, 打包输出将使用Prepack格式化
+        --bridge-config <span class="token punctuation">[</span>string<span class="token punctuation">]</span>     使用Prepack的一个json格式的文件__fbBatchedBridgeConfig 例如: ./bridgeconfig.json
+        --bundle-output <span class="token operator">&lt;</span>string<span class="token operator">&gt;</span>     打包后的文件输出目录, 例: /tmp/groups.bundle,tmp目录没有需要手动创建哦
+        --bundle-encoding <span class="token punctuation">[</span>string<span class="token punctuation">]</span>   打离线包的格式 可参考链接https://nodejs.org/api/buffer.html<span class="token comment">#buffer_buffer.</span>
+        --sourcemap-output <span class="token punctuation">[</span>string<span class="token punctuation">]</span>  生成Source Map，但0.14之后不再自动生成source map，需要手动指定这个参数。例: /tmp/groups.map
+        --assets-dest <span class="token punctuation">[</span>string<span class="token punctuation">]</span>       打包时图片资源的存储路径
+        --verbose                    显示打包过程
+        --reset-cache                移除缓存文件
+        --config <span class="token punctuation">[</span>string<span class="token punctuation">]</span>            命令行的配置文件路径
+</code></pre></div><p><strong>运行完成之后可以在对应工程下面查看 module_n 目录下有对应的 bundle 文件，</strong></p> <p>可能会出现的错误：<strong>解决办法（在 model_1/model_2 工程下新建一个 module_n 目录）</strong></p> <div class="language- extra-class"><pre class="language-text"><code>    Loading dependency graph...info Writing bundle output to:, ./bundle/module_1.bundle
+    error ENOENT: no such file or directory, open './module_1/module_1.bundle'. Run CLI with --verbose flag for more details.
+</code></pre></div><h2 id="_2、后端服务编写"><a href="#_2、后端服务编写" class="header-anchor">#</a> 2、后端服务编写</h2> <p>我们使用<code>express</code>创建一个 Mock 服务，主要包括模块信息的返回和对应模块 zip 文件的下载。那么我们需要将打包之后的<code>module_1/module_2</code>目录压缩成 zip 各式。</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">const</span> express <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span><span class="token string">&quot;express&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">const</span> router <span class="token operator">=</span> express<span class="token punctuation">.</span><span class="token function">Router</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">/**
+ * 返回对应module信息
+ */</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/modules&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  res<span class="token punctuation">.</span><span class="token function">json</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    data<span class="token operator">:</span> <span class="token punctuation">[</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">&quot;module_1&quot;</span>
+      <span class="token punctuation">}</span><span class="token punctuation">,</span>
+      <span class="token punctuation">{</span>
+        name<span class="token operator">:</span> <span class="token string">&quot;module_2&quot;</span>
+      <span class="token punctuation">}</span>
+    <span class="token punctuation">]</span>
+  <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">/**
+ * 根据名称返回对应module的zip文件
+ */</span>
+router<span class="token punctuation">.</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">&quot;/download/:name&quot;</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token parameter">req<span class="token punctuation">,</span> res<span class="token punctuation">,</span> next</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword">const</span> name <span class="token operator">=</span> req<span class="token punctuation">.</span>params<span class="token punctuation">.</span>name<span class="token punctuation">;</span>
+  res<span class="token punctuation">.</span><span class="token function">download</span><span class="token punctuation">(</span><span class="token template-string"><span class="token template-punctuation string">`</span><span class="token string">static/</span><span class="token interpolation"><span class="token interpolation-punctuation punctuation">${</span>name<span class="token interpolation-punctuation punctuation">}</span></span><span class="token string">.zip</span><span class="token template-punctuation string">`</span></span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+module<span class="token punctuation">.</span>exports <span class="token operator">=</span> router<span class="token punctuation">;</span>
+</code></pre></div><h2 id="_3、android-工程改造"><a href="#_3、android-工程改造" class="header-anchor">#</a> 3、Android 工程改造</h2> <p>前面提到我们直接使用 rn 创建的一个 Android 工程，那么现在我们就对这个 Android 工程进行改造吧。</p> <p><strong>Step1</strong>：改造<code>MainApplication.java</code>其他部分的代码干掉，值保留<code>SoLoader</code>加载器，前面提到 SoLoader 的作用是加载 so 文件，作为 js 和 Java 通信的桥梁。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainApplication</span> <span class="token keyword">extends</span> <span class="token class-name">Application</span> <span class="token keyword">implements</span> <span class="token class-name">ReactApplication</span> <span class="token punctuation">{</span>
+
+
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token class-name">SoLoader</span><span class="token punctuation">.</span><span class="token function">init</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token comment">/* native exopackage */</span> <span class="token boolean">false</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+    <span class="token punctuation">}</span>
+</code></pre></div><p><strong>Step2</strong>: 新增<code>okhttp</code>等依赖。由于需要向后端服务请求对应 zip 包，所以需要 http 请求。</p> <div class="language-bash extra-class"><pre class="language-bash"><code>    //在android的app目录下的build.gradle文件新增如下依赖
+    implementation <span class="token string">'com.liulishuo.filedownloader:library:1.7.4'</span> // 文件下载
+    implementation <span class="token string">&quot;com.squareup.okhttp3:okhttp:3.12.0&quot;</span> // 网络请求
+    implementation <span class="token string">'com.google.code.gson:gson:2.8.5'</span> // json转换
+    implementation <span class="token string">'com.android.support:recyclerview-v7:28.0.0'</span> //列表展示
+</code></pre></div><p><strong>Step3</strong>: 编写主逻辑</p> <ul><li>我们设想在 App 首页请求后端服务，查看到当前所有 RN 的 module</li> <li>点击列表中的每一个，跳转到对应的 RN 页面。</li></ul> <p><strong>Step4</strong>: 使用 okhttp 获取模块列表，点击下载对应 Bundle 文件</p> <p>由于需要调用服务，需要在 AndroidManifest.xml 文件中声明网络获取权限，详情代码请见文末【源码】</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">MainActivity</span> <span class="token keyword">extends</span> <span class="token class-name">AppCompatActivity</span> <span class="token punctuation">{</span>
+        <span class="token class-name">RecyclerView</span> recyclerView<span class="token punctuation">;</span>
+        <span class="token class-name">ListModuleAdapter</span> adapter<span class="token punctuation">;</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token annotation punctuation">@Nullable</span> <span class="token class-name">Bundle</span> savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">setContentView</span><span class="token punctuation">(</span><span class="token class-name">R</span><span class="token punctuation">.</span>layout<span class="token punctuation">.</span>main<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">initView</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token function">featchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/**
+         * 初始化布局视图，默认数据为空
+         */</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">initView</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            recyclerView <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">findViewById</span><span class="token punctuation">(</span><span class="token class-name">R</span><span class="token punctuation">.</span>id<span class="token punctuation">.</span>list<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            recyclerView<span class="token punctuation">.</span><span class="token function">setLayoutManager</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">LinearLayoutManager</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            adapter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ListModuleAdapter</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token keyword">new</span> <span class="token class-name">ArrayList</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ModuleItem</span><span class="token punctuation">.</span><span class="token class-name">Bundle</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            recyclerView<span class="token punctuation">.</span><span class="token function">setAdapter</span><span class="token punctuation">(</span>adapter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            adapter<span class="token punctuation">.</span><span class="token function">setOnItemClickListener</span><span class="token punctuation">(</span>bundle <span class="token operator">-&gt;</span> <span class="token punctuation">{</span>
+                <span class="token comment">// 检查是否下载过，如果已经下载过则直接打开，暂不考虑各种版本问题</span>
+                <span class="token class-name">String</span> f <span class="token operator">=</span> <span class="token class-name">MainActivity</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFilesDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> bundle<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> bundle<span class="token punctuation">.</span>name <span class="token operator">+</span> <span class="token string">&quot;.bundle&quot;</span><span class="token punctuation">;</span>
+                <span class="token class-name">File</span> file <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">File</span><span class="token punctuation">(</span><span class="token punctuation">(</span>f<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token keyword">if</span> <span class="token punctuation">(</span>file<span class="token punctuation">.</span><span class="token function">exists</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token function">goToRNActivity</span><span class="token punctuation">(</span>bundle<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                    <span class="token function">download</span><span class="token punctuation">(</span>bundle<span class="token punctuation">.</span>name<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/**
+         * 跳转到RN的展示页面
+         * @param bundleName
+         */</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">goToRNActivity</span><span class="token punctuation">(</span><span class="token class-name">String</span> bundleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">Intent</span> starter <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Intent</span><span class="token punctuation">(</span><span class="token class-name">MainActivity</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token class-name">RNDynamicActivity</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">RNDynamicActivity</span><span class="token punctuation">.</span>bundleName <span class="token operator">=</span> bundleName<span class="token punctuation">;</span>
+            <span class="token class-name">MainActivity</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">startActivity</span><span class="token punctuation">(</span>starter<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/**
+         * 调用服务获取数据
+         */</span>
+        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">featchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">OkHttpClient</span> okHttpClient <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">OkHttpClient</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Request</span> request <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Request</span><span class="token punctuation">.</span><span class="token class-name">Builder</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">url</span><span class="token punctuation">(</span>API<span class="token punctuation">.</span>MODULES<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">method</span><span class="token punctuation">(</span><span class="token string">&quot;GET&quot;</span><span class="token punctuation">,</span> <span class="token keyword">null</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">build</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">Call</span> call <span class="token operator">=</span> okHttpClient<span class="token punctuation">.</span><span class="token function">newCall</span><span class="token punctuation">(</span>request<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            call<span class="token punctuation">.</span><span class="token function">enqueue</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Callback</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onFailure</span><span class="token punctuation">(</span><span class="token class-name">Call</span> call<span class="token punctuation">,</span> <span class="token class-name">IOException</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span><span class="token string">&quot;数据获取失败&quot;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">onResponse</span><span class="token punctuation">(</span><span class="token class-name">Call</span> call<span class="token punctuation">,</span> <span class="token class-name">Response</span> response<span class="token punctuation">)</span> <span class="token keyword">throws</span> <span class="token class-name">IOException</span> <span class="token punctuation">{</span>
+                    <span class="token class-name">String</span> data <span class="token operator">=</span> response<span class="token punctuation">.</span><span class="token function">body</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">string</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                    <span class="token class-name">ModuleItem</span> moduleItem <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Gson</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">fromJson</span><span class="token punctuation">(</span>data<span class="token punctuation">,</span> <span class="token class-name">ModuleItem</span><span class="token punctuation">.</span><span class="token keyword">class</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                    <span class="token function">runOnUiThread</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">Runnable</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">public</span> <span class="token keyword">void</span> <span class="token function">run</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    												<span class="token comment">//刷新列表</span>
+                            adapter<span class="token punctuation">.</span><span class="token function">clearModules</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            adapter<span class="token punctuation">.</span><span class="token function">addModules</span><span class="token punctuation">(</span>moduleItem<span class="token punctuation">.</span>data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token comment">/**
+         * 下载对应的bundle
+         *
+         * @param bundleName
+         */</span>
+        <span class="token keyword">private</span> <span class="token keyword">void</span> <span class="token function">download</span><span class="token punctuation">(</span><span class="token keyword">final</span> <span class="token class-name">String</span> bundleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token class-name">System</span><span class="token punctuation">.</span>out<span class="token punctuation">.</span><span class="token function">println</span><span class="token punctuation">(</span>API<span class="token punctuation">.</span>DOWNLOAD <span class="token operator">+</span> bundleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FileDownloader</span><span class="token punctuation">.</span><span class="token function">setup</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token class-name">FileDownloader</span><span class="token punctuation">.</span><span class="token function">getImpl</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">create</span><span class="token punctuation">(</span>API<span class="token punctuation">.</span>DOWNLOAD <span class="token operator">+</span> bundleName<span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setPath</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFilesDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token boolean">true</span><span class="token punctuation">)</span>
+
+                    <span class="token punctuation">.</span><span class="token function">setListener</span><span class="token punctuation">(</span><span class="token keyword">new</span> <span class="token class-name">FileDownloadListener</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">started</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                            <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">started</span><span class="token punctuation">(</span>task<span class="token punctuation">)</span><span class="token punctuation">;</span>
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">pending</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">,</span> <span class="token keyword">int</span> soFarBytes<span class="token punctuation">,</span> <span class="token keyword">int</span> totalBytes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">progress</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">,</span> <span class="token keyword">int</span> soFarBytes<span class="token punctuation">,</span> <span class="token keyword">int</span> totalBytes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">completed</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                            <span class="token keyword">try</span> <span class="token punctuation">{</span>
+                                <span class="token comment">//下载之后解压，然后打开</span>
+                                <span class="token class-name">ZipUtils</span><span class="token punctuation">.</span><span class="token function">unzip</span><span class="token punctuation">(</span><span class="token class-name">MainActivity</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFilesDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> bundleName <span class="token operator">+</span> <span class="token string">&quot;.zip&quot;</span><span class="token punctuation">,</span> <span class="token class-name">MainActivity</span><span class="token punctuation">.</span><span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">getFilesDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                               <span class="token function">goToRNActivity</span><span class="token punctuation">(</span>bundleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+                            <span class="token punctuation">}</span> <span class="token keyword">catch</span> <span class="token punctuation">(</span><span class="token class-name">Exception</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                                e<span class="token punctuation">.</span><span class="token function">printStackTrace</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+                            <span class="token punctuation">}</span>
+
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">paused</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">,</span> <span class="token keyword">int</span> soFarBytes<span class="token punctuation">,</span> <span class="token keyword">int</span> totalBytes<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">error</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">,</span> <span class="token class-name">Throwable</span> e<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                        <span class="token punctuation">}</span>
+
+                        <span class="token annotation punctuation">@Override</span>
+                        <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">warn</span><span class="token punctuation">(</span><span class="token class-name">BaseDownloadTask</span> task<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+                        <span class="token punctuation">}</span>
+                    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>**Step5：**自定义 RN 加载页面（记得在<code>AndroidManifest</code>.xml 文件中声明）并创建<code>ReacActivity</code>委托对象<code>DispatchDelegate</code></p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token comment">//RNDynamicActivity</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">RNDynamicActivity</span> <span class="token keyword">extends</span> <span class="token class-name">ReactActivity</span> <span class="token punctuation">{</span>
+    		<span class="token keyword">public</span> <span class="token keyword">static</span> <span class="token class-name">String</span> bundleName<span class="token punctuation">;</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">ReactActivityDelegate</span> <span class="token function">createReactActivityDelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token class-name">DispatchDelegate</span> delegate <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">DispatchDelegate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> bundleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+            <span class="token keyword">return</span> delegate<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment">//DispatchDelegate</span>
+    <span class="token keyword">public</span> <span class="token keyword">class</span> <span class="token class-name">DispatchDelegate</span> <span class="token keyword">extends</span> <span class="token class-name">ReactActivityDelegate</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">private</span> <span class="token class-name">Activity</span> activity<span class="token punctuation">;</span>
+        <span class="token keyword">private</span> <span class="token class-name">String</span> bundleName<span class="token punctuation">;</span>
+
+
+        <span class="token keyword">public</span> <span class="token class-name">DispatchDelegate</span><span class="token punctuation">(</span><span class="token class-name">Activity</span> activity<span class="token punctuation">,</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> bundleName<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+            <span class="token keyword">super</span><span class="token punctuation">(</span>activity<span class="token punctuation">,</span> bundleName<span class="token punctuation">)</span><span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>activity <span class="token operator">=</span> activity<span class="token punctuation">;</span>
+            <span class="token keyword">this</span><span class="token punctuation">.</span>bundleName <span class="token operator">=</span> bundleName<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+
+        <span class="token annotation punctuation">@Override</span>
+        <span class="token keyword">protected</span> <span class="token class-name">ReactNativeHost</span> <span class="token function">getReactNativeHost</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+
+            <span class="token class-name">ReactNativeHost</span> mReactNativeHost <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">ReactNativeHost</span><span class="token punctuation">(</span>activity<span class="token punctuation">.</span><span class="token function">getApplication</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">public</span> <span class="token keyword">boolean</span> <span class="token function">getUseDeveloperSupport</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token class-name">BuildConfig</span><span class="token punctuation">.</span>DEBUG<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+    						<span class="token comment">//注册原生模块，这样</span>
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">protected</span> <span class="token class-name">List</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">&gt;</span></span> <span class="token function">getPackages</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token class-name">Arrays</span><span class="token punctuation">.</span><span class="token generics"><span class="token punctuation">&lt;</span><span class="token class-name">ReactPackage</span><span class="token punctuation">&gt;</span></span><span class="token function">asList</span><span class="token punctuation">(</span>
+                            <span class="token keyword">new</span> <span class="token class-name">MainReactPackage</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+                    <span class="token punctuation">)</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token annotation punctuation">@Nullable</span>
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getJSBundleFile</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    								<span class="token comment">// 读取已经解压的bundle文件</span>
+                    <span class="token class-name">String</span> file <span class="token operator">=</span> activity<span class="token punctuation">.</span><span class="token function">getFilesDir</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">getAbsolutePath</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> bundleName <span class="token operator">+</span> <span class="token string">&quot;/&quot;</span> <span class="token operator">+</span> bundleName <span class="token operator">+</span> <span class="token string">&quot;.bundle&quot;</span><span class="token punctuation">;</span>
+                    <span class="token keyword">return</span> file<span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token annotation punctuation">@Nullable</span>
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getBundleAssetName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> bundleName <span class="token operator">+</span> <span class="token string">&quot;.bundle&quot;</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+
+                <span class="token annotation punctuation">@Override</span>
+                <span class="token keyword">protected</span> <span class="token class-name">String</span> <span class="token function">getJSMainModuleName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+                    <span class="token keyword">return</span> <span class="token string">&quot;index&quot;</span><span class="token punctuation">;</span>
+                <span class="token punctuation">}</span>
+            <span class="token punctuation">}</span><span class="token punctuation">;</span>
+            <span class="token keyword">return</span> mReactNativeHost<span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p>其余详细代码请见：</p> <p><a href="https://github.com/MrGaoGang/luckly_learn/tree/master/packages/rn-dynamic" target="_blank" rel="noopener noreferrer">MrGaoGang/luckly_learn<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>最后效果图如下：</p> <p><img src="/images/react/rn-dynamic/preview.gif" alt=""></p> <p>其实真实的加载远不止如此简单，还有很多方面需要我我们考虑。比如：</p> <ul><li>离线包版本管理</li> <li>离线包加载时机，比如用户在什么时间下载离线包，加载离线包，已经打开了当前离线包，下次打开是否更新？等</li> <li>离线包缓存机制</li> <li>权限管理</li> <li>降级策略</li> <li>等待</li></ul> <h2 id="三、可能会遇到的问题及疑问"><a href="#三、可能会遇到的问题及疑问" class="header-anchor">#</a> 三、可能会遇到的问题及疑问</h2> <p><strong>1、为什么页面跳转到 RNDynamicActivity 没有使用 Intent 传递数据</strong></p> <p>这就要看 Activity 中<code>createReactActivityDelegate</code>和<code>onCreate</code>执行顺序了，查看 ReactActivity 源码得知<code>createReactActivityDelegate</code>是在 RectActivity 初始化的时候执行，所以<strong>优先于<code>onCreate</code>执行</strong>。</p> <div class="language-java extra-class"><pre class="language-java"><code>    <span class="token keyword">public</span> <span class="token keyword">abstract</span> <span class="token keyword">class</span> <span class="token class-name">ReactActivity</span> <span class="token keyword">extends</span> <span class="token class-name">AppCompatActivity</span>
+        <span class="token keyword">implements</span> <span class="token class-name">DefaultHardwareBackBtnHandler</span><span class="token punctuation">,</span> <span class="token class-name">PermissionAwareActivity</span> <span class="token punctuation">{</span>
+
+      <span class="token keyword">private</span> <span class="token keyword">final</span> <span class="token class-name">ReactActivityDelegate</span> mDelegate<span class="token punctuation">;</span>
+
+      <span class="token keyword">protected</span> <span class="token class-name">ReactActivity</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        mDelegate <span class="token operator">=</span> <span class="token function">createReactActivityDelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+
+      <span class="token keyword">protected</span> <span class="token annotation punctuation">@Nullable</span> <span class="token class-name">String</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">null</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token comment">/** Called at construction time, override if you have a custom delegate implementation. */</span>
+      <span class="token keyword">protected</span> <span class="token class-name">ReactActivityDelegate</span> <span class="token function">createReactActivityDelegate</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token keyword">new</span> <span class="token class-name">ReactActivityDelegate</span><span class="token punctuation">(</span><span class="token keyword">this</span><span class="token punctuation">,</span> <span class="token function">getMainComponentName</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+
+      <span class="token annotation punctuation">@Override</span>
+      <span class="token keyword">protected</span> <span class="token keyword">void</span> <span class="token function">onCreate</span><span class="token punctuation">(</span><span class="token class-name">Bundle</span> savedInstanceState<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">super</span><span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        mDelegate<span class="token punctuation">.</span><span class="token function">onCreate</span><span class="token punctuation">(</span>savedInstanceState<span class="token punctuation">)</span><span class="token punctuation">;</span>
+      <span class="token punctuation">}</span>
+    	<span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span>
+    <span class="token punctuation">}</span>
+</code></pre></div><p><strong>2、出现模块没有注册的报错</strong></p> <p><img src="/images/react/rn-dynamic/error.png" alt=""></p> <p>请检查工程的名称是否和打包的名称相同</p> <p>3、报错：错误: 需要 class, interface 或 enum</p> <h2 id="四、源码"><a href="#四、源码" class="header-anchor">#</a> 四、源码</h2> <p><a href="https://github.com/MrGaoGang/luckly_learn/tree/master/packages/rn-dynamic" target="_blank" rel="noopener noreferrer">MrGaoGang/luckly_learn<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><img src="/images/react/rn-dynamic/rn-1.png" alt=""></p> <p><img src="/images/react/rn-dynamic/rn-2.png" alt=""></p> <p><img src="/images/react/rn-dynamic/rn-3.png" alt=""></p></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">3/27/2020, 9:26:25 PM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.f0a8e60e.js" defer></script><script src="/assets/js/2.79ae508a.js" defer></script><script src="/assets/js/89.2633409a.js" defer></script>
+  </body>
+</html>
