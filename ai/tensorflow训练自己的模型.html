@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>tensorflow 训练自己的模型，自定义物件识别 | 高先生的博客</title>
+    <meta name="description" content="旨在分享对技术的了解">
+    <meta name="generator" content="VuePress 1.3.1">
+    <link rel="icon" href="/images/oview/logo.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.2/jquery.fancybox.min.css">
+  <link rel="manifest" href="/manifest.json">
+  <meta name="theme-color" content="#3eaf7c">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <link rel="apple-touch-icon" href="/icons/apple-touch-icon-152x152.png">
+  <link rel="mask-icon" href="/icons/safari-pinned-tab.svg" color="#3eaf7c">
+  <meta name="msapplication-TileImage" content="/icons/msapplication-icon-144x144.png">
+  <meta name="msapplication-TileColor" content="#000000">
+    
+    <link rel="preload" href="/assets/css/0.styles.c76a2eb7.css" as="style"><link rel="preload" href="/assets/js/app.2121b0c3.js" as="script"><link rel="preload" href="/assets/js/2.79ae508a.js" as="script"><link rel="preload" href="/assets/js/8.7975df1b.js" as="script"><link rel="prefetch" href="/assets/js/10.f5455c65.js"><link rel="prefetch" href="/assets/js/100.d67ab817.js"><link rel="prefetch" href="/assets/js/101.6e9f299b.js"><link rel="prefetch" href="/assets/js/102.94250e6b.js"><link rel="prefetch" href="/assets/js/103.4b5e06f3.js"><link rel="prefetch" href="/assets/js/104.85741c75.js"><link rel="prefetch" href="/assets/js/105.2e86e665.js"><link rel="prefetch" href="/assets/js/106.7f5367b4.js"><link rel="prefetch" href="/assets/js/107.94f486b5.js"><link rel="prefetch" href="/assets/js/108.0ff8553e.js"><link rel="prefetch" href="/assets/js/109.1537cb38.js"><link rel="prefetch" href="/assets/js/11.a70a0975.js"><link rel="prefetch" href="/assets/js/110.5a525dd8.js"><link rel="prefetch" href="/assets/js/111.f0240bad.js"><link rel="prefetch" href="/assets/js/112.c81c7b94.js"><link rel="prefetch" href="/assets/js/12.929659e0.js"><link rel="prefetch" href="/assets/js/13.635b826f.js"><link rel="prefetch" href="/assets/js/14.9f6e8bc1.js"><link rel="prefetch" href="/assets/js/15.85615e60.js"><link rel="prefetch" href="/assets/js/16.5a90612e.js"><link rel="prefetch" href="/assets/js/17.890eeb18.js"><link rel="prefetch" href="/assets/js/18.559a2b67.js"><link rel="prefetch" href="/assets/js/19.92b0c37d.js"><link rel="prefetch" href="/assets/js/20.02071d0e.js"><link rel="prefetch" href="/assets/js/21.412b5708.js"><link rel="prefetch" href="/assets/js/22.8dbcb515.js"><link rel="prefetch" href="/assets/js/23.1c25e41d.js"><link rel="prefetch" href="/assets/js/24.5ec52e21.js"><link rel="prefetch" href="/assets/js/25.acd48601.js"><link rel="prefetch" href="/assets/js/26.7f8e32be.js"><link rel="prefetch" href="/assets/js/27.bf59cd1a.js"><link rel="prefetch" href="/assets/js/28.72b28f34.js"><link rel="prefetch" href="/assets/js/29.40b1d92e.js"><link rel="prefetch" href="/assets/js/3.9b791051.js"><link rel="prefetch" href="/assets/js/30.341f72ac.js"><link rel="prefetch" href="/assets/js/31.79bdb2c7.js"><link rel="prefetch" href="/assets/js/32.6ea116dd.js"><link rel="prefetch" href="/assets/js/33.3ff4f82b.js"><link rel="prefetch" href="/assets/js/34.174035b5.js"><link rel="prefetch" href="/assets/js/35.2178b283.js"><link rel="prefetch" href="/assets/js/36.6c932bd2.js"><link rel="prefetch" href="/assets/js/37.cb7cfbe5.js"><link rel="prefetch" href="/assets/js/38.c7673829.js"><link rel="prefetch" href="/assets/js/39.ea7fabb7.js"><link rel="prefetch" href="/assets/js/4.b5197cfd.js"><link rel="prefetch" href="/assets/js/40.8ec1cf8d.js"><link rel="prefetch" href="/assets/js/41.9b4cbc27.js"><link rel="prefetch" href="/assets/js/42.01bb0a98.js"><link rel="prefetch" href="/assets/js/43.76aa00b6.js"><link rel="prefetch" href="/assets/js/44.6d9abe54.js"><link rel="prefetch" href="/assets/js/45.a7343ffc.js"><link rel="prefetch" href="/assets/js/46.5bc84696.js"><link rel="prefetch" href="/assets/js/47.a821e02b.js"><link rel="prefetch" href="/assets/js/48.f7d3b905.js"><link rel="prefetch" href="/assets/js/49.6d0b41f1.js"><link rel="prefetch" href="/assets/js/5.7353be14.js"><link rel="prefetch" href="/assets/js/50.94f33fca.js"><link rel="prefetch" href="/assets/js/51.5ad4db7c.js"><link rel="prefetch" href="/assets/js/52.51133e87.js"><link rel="prefetch" href="/assets/js/53.1102cbbe.js"><link rel="prefetch" href="/assets/js/54.9071bda0.js"><link rel="prefetch" href="/assets/js/55.7adaa509.js"><link rel="prefetch" href="/assets/js/56.f8eefa3f.js"><link rel="prefetch" href="/assets/js/57.93e0eb1f.js"><link rel="prefetch" href="/assets/js/58.d929bbbf.js"><link rel="prefetch" href="/assets/js/59.27b785ec.js"><link rel="prefetch" href="/assets/js/6.fdb5b4fc.js"><link rel="prefetch" href="/assets/js/60.935f92ac.js"><link rel="prefetch" href="/assets/js/61.89e4481b.js"><link rel="prefetch" href="/assets/js/62.005ec51b.js"><link rel="prefetch" href="/assets/js/63.f9b5a356.js"><link rel="prefetch" href="/assets/js/64.cee6e732.js"><link rel="prefetch" href="/assets/js/65.682b9014.js"><link rel="prefetch" href="/assets/js/66.ecf3b34e.js"><link rel="prefetch" href="/assets/js/67.a12495c6.js"><link rel="prefetch" href="/assets/js/68.1724163d.js"><link rel="prefetch" href="/assets/js/69.9f2e91de.js"><link rel="prefetch" href="/assets/js/7.7c2a9f9b.js"><link rel="prefetch" href="/assets/js/70.91b78d80.js"><link rel="prefetch" href="/assets/js/71.d3cd0442.js"><link rel="prefetch" href="/assets/js/72.a03a4e97.js"><link rel="prefetch" href="/assets/js/73.2f5c7ef7.js"><link rel="prefetch" href="/assets/js/74.115ab075.js"><link rel="prefetch" href="/assets/js/75.64e522f8.js"><link rel="prefetch" href="/assets/js/76.357064b8.js"><link rel="prefetch" href="/assets/js/77.07190e76.js"><link rel="prefetch" href="/assets/js/78.aeb1b761.js"><link rel="prefetch" href="/assets/js/79.5d85821b.js"><link rel="prefetch" href="/assets/js/80.1f459900.js"><link rel="prefetch" href="/assets/js/81.345273c1.js"><link rel="prefetch" href="/assets/js/82.1bfe672a.js"><link rel="prefetch" href="/assets/js/83.27695a88.js"><link rel="prefetch" href="/assets/js/84.333b4cfd.js"><link rel="prefetch" href="/assets/js/85.926a3d01.js"><link rel="prefetch" href="/assets/js/86.a709d7d1.js"><link rel="prefetch" href="/assets/js/87.22046b21.js"><link rel="prefetch" href="/assets/js/88.45e28481.js"><link rel="prefetch" href="/assets/js/89.5f12529f.js"><link rel="prefetch" href="/assets/js/9.2d81cf1f.js"><link rel="prefetch" href="/assets/js/90.a6f38a10.js"><link rel="prefetch" href="/assets/js/91.75440d17.js"><link rel="prefetch" href="/assets/js/92.0a7cc454.js"><link rel="prefetch" href="/assets/js/93.8e3f1206.js"><link rel="prefetch" href="/assets/js/94.d6ea184d.js"><link rel="prefetch" href="/assets/js/95.a3e83a75.js"><link rel="prefetch" href="/assets/js/96.20f64b66.js"><link rel="prefetch" href="/assets/js/97.529aa602.js"><link rel="prefetch" href="/assets/js/98.63fa7c87.js"><link rel="prefetch" href="/assets/js/99.928ca6c3.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.c76a2eb7.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">高先生的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="http://gaogangsever.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  页面构建器
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/javascript/index.html" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/vue/index.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/react/index.html" class="nav-link">
+  React/RN
+</a></div><div class="nav-item"><a href="/ai/index.html" class="nav-link">
+  AI
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Mendix" class="dropdown-title"><span class="title">Mendix</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mendix/index.html" class="nav-link">
+  1. Mendix介绍
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/widgets/index.html" class="nav-link">
+  2. 组件开发
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/study.html" class="nav-link">
+  3. Mendix学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开源" class="dropdown-title"><span class="title">开源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/article/oview/index.html" class="nav-link">
+  图表库oView
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_recyclerview" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_recyclerview
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_popup_window" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_popup_window
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/lucky_tools/blob/master/packages/mendix-cli/README.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue开发Mendix组件脚手架
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/KotlinGank" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  kotlin App
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/MrGaoGang/lucky_docs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="http://gaogangsever.cn/" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  页面构建器
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><div class="nav-item"><a href="/javascript/index.html" class="nav-link">
+  前端
+</a></div><div class="nav-item"><a href="/vue/index.html" class="nav-link">
+  Vue
+</a></div><div class="nav-item"><a href="/react/index.html" class="nav-link">
+  React/RN
+</a></div><div class="nav-item"><a href="/ai/index.html" class="nav-link">
+  AI
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="Mendix" class="dropdown-title"><span class="title">Mendix</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/mendix/index.html" class="nav-link">
+  1. Mendix介绍
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/widgets/index.html" class="nav-link">
+  2. 组件开发
+</a></li><li class="dropdown-item"><!----> <a href="/mendix/study.html" class="nav-link">
+  3. Mendix学习
+</a></li></ul></div></div><div class="nav-item"><div class="dropdown-wrapper"><button type="button" aria-label="开源" class="dropdown-title"><span class="title">开源</span> <span class="arrow right"></span></button> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/article/oview/index.html" class="nav-link">
+  图表库oView
+</a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_recyclerview" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_recyclerview
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/luckly_popup_window" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  lucky_popup_window
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/lucky_tools/blob/master/packages/mendix-cli/README.md" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Vue开发Mendix组件脚手架
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/cocos-webpack-web" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  cocos web端开发
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li><li class="dropdown-item"><!----> <a href="https://github.com/MrGaoGang/KotlinGank" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  kotlin App
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div></div><div class="nav-item"><a href="https://github.com/MrGaoGang/lucky_docs" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>tensorflow 训练自己的模型，自定义物件识别</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#一、环境配置" class="sidebar-link">一、环境配置</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_1、使用-pyenv-做-python-版本切换" class="sidebar-link">1、使用 pyenv 做 Python 版本切换</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_2、下载图片标注工具" class="sidebar-link">2、下载图片标注工具</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_3、进行图片标注" class="sidebar-link">3、进行图片标注</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_4、将图片转换成-csv-格式" class="sidebar-link">4、将图片转换成 csv 格式</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_5、将-csv-转化成-tfrecord-文件" class="sidebar-link">5、将 csv 转化成 tfrecord 文件</a></li></ul></li><li><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#二、训练准备" class="sidebar-link">二、训练准备</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_1、设置-labelmap-pbtxt" class="sidebar-link">1、设置 labelmap.pbtxt</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_2、选择需要训练的模型" class="sidebar-link">2、选择需要训练的模型</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_3、创建并修改模型配置文件" class="sidebar-link">3、创建并修改模型配置文件</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_4、编写训练脚本，开始训练模型" class="sidebar-link">4、编写训练脚本，开始训练模型</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_5、模型导出" class="sidebar-link">5、模型导出</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_6、模型检测" class="sidebar-link">6、模型检测</a></li><li class="sidebar-sub-header"><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#_7、模型评估" class="sidebar-link">7、模型评估</a></li></ul></li><li><a href="/ai/tensorflow%E8%AE%AD%E7%BB%83%E8%87%AA%E5%B7%B1%E7%9A%84%E6%A8%A1%E5%9E%8B.html#参考" class="sidebar-link">参考</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="tensorflow-训练自己的模型，自定义物件识别"><a href="#tensorflow-训练自己的模型，自定义物件识别" class="header-anchor">#</a> tensorflow 训练自己的模型，自定义物件识别</h1> <p>上一篇文章使用了 tensorflow 提供的模型进行图像识别；这次我们将使用自己的模型进行训练并且识别。</p> <p>目标检测是基于<code>tensorflow</code>提供的<a href="https://github.com/tensorflow/models/tree/master/research/object_detection" target="_blank" rel="noopener noreferrer">object detection API<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>。整个训练的过程可以简要概括为训练集的准备和训练。</p> <p><img src="https://i.imgur.com/u8tOwWq.jpg" alt="https://i.imgur.com/u8tOwWq.jpg"></p> <p><strong>训练集准备：</strong></p> <ol><li>人工标注图片，并转成<code>xml</code>格式</li> <li>将<code>xml</code>转成<code>tf</code>能识别的数据格式即<code>tfrecord</code></li></ol> <p><strong>训练过程：</strong></p> <ol><li>配置训练参数，这里需要配置
+<ul><li>目标检测算法类型</li> <li>目标类别数量</li> <li>训练步长</li> <li>训练部署训练集路径</li> <li>模型输出路径</li> <li>*以及可以基于前人训练好的模型微调</li></ul></li> <li>基于<code>slim</code>模块实现模型训练</li></ol> <h2 id="一、环境配置"><a href="#一、环境配置" class="header-anchor">#</a> 一、环境配置</h2> <h3 id="_1、使用-pyenv-做-python-版本切换"><a href="#_1、使用-pyenv-做-python-版本切换" class="header-anchor">#</a> 1、使用 pyenv 做 Python 版本切换</h3> <div class="language-bash extra-class"><pre class="language-bash"><code>    brew <span class="token function">install</span> pyenv
+    brew <span class="token function">install</span> pyenv-virtualenv
+    pyenv virtualenv <span class="token number">3.7</span>.5 object_detection_demo
+    <span class="token builtin class-name">source</span> ~/.bashrc
+    pyenv activate object_detection_demo
+</code></pre></div><h3 id="_2、下载图片标注工具"><a href="#_2、下载图片标注工具" class="header-anchor">#</a> 2、下载图片标注工具</h3> <p>首先我们需要准备大量的训练集，可以针对自己的需求手动标注。我们用的是<a href="https://github.com/tzutalin/labelImg" target="_blank" rel="noopener noreferrer">labelImg<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>这个 python 工具。</p> <p><img src="/images/ai/self-define/1.png" alt="/images/ai/self-define"></p> <ol start="3"><li>安裝 pandas</li></ol> <p>Pandas 是 python 的一个数据分析库，为用户提供高效能、简易使用的资料格式，让使用者可以快速操作及分析资料</p> <div class="language- extra-class"><pre class="language-text"><code>    pip install pandas
+</code></pre></div><ol start="4"><li>创建 workspace 和 training_demo 目录</li></ol> <p>安装 tensorflow/models 源码</p> <div class="language- extra-class"><pre class="language-text"><code>    git clone --branch r1.13.0 --depth 1 https://github.com/tensorflow/models
+</code></pre></div><p><img src="/images/ai/self-define/2.png" alt="/images/ai/self-define"></p> <h3 id="_3、进行图片标注"><a href="#_3、进行图片标注" class="header-anchor">#</a> 3、进行图片标注</h3> <p>此处使用的是已经标注好的图片，数据来源<a href="https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10" target="_blank" rel="noopener noreferrer">https://github.com/EdjeElectronics/TensorFlow-Object-Detection-API-Tutorial-Train-Multiple-Objects-Windows-10<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><img src="/images/ai/self-define/3.png" alt="/images/ai/self-define"></p> <h3 id="_4、将图片转换成-csv-格式"><a href="#_4、将图片转换成-csv-格式" class="header-anchor">#</a> <strong>4、将图片转换成 csv 格式</strong></h3> <div class="language- extra-class"><pre class="language-text"><code>    # 先安装pandas Pandas 是python 的一个数据分析库，为用户提供高效能、简易使用的资料格式，让使用者可以快速操作及分析资料
+    pip install pandas
+    # 启动csv文件转换
+    python src/convert_to_csv.py
+</code></pre></div><div class="language-py extra-class"><pre class="language-py"><code>    <span class="token comment"># 将xml转换成csv各式</span>
+    <span class="token keyword">import</span> os
+    <span class="token keyword">import</span> glob
+    <span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+    <span class="token keyword">import</span> xml<span class="token punctuation">.</span>etree<span class="token punctuation">.</span>ElementTree <span class="token keyword">as</span> ET
+
+
+    <span class="token keyword">def</span> <span class="token function">xml_to_csv</span><span class="token punctuation">(</span>path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        xml_list <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        <span class="token keyword">for</span> xml_file <span class="token keyword">in</span> glob<span class="token punctuation">.</span>glob<span class="token punctuation">(</span>path <span class="token operator">+</span> <span class="token string">'/*.xml'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            tree <span class="token operator">=</span> ET<span class="token punctuation">.</span>parse<span class="token punctuation">(</span>xml_file<span class="token punctuation">)</span>
+            root <span class="token operator">=</span> tree<span class="token punctuation">.</span>getroot<span class="token punctuation">(</span><span class="token punctuation">)</span>
+            <span class="token keyword">for</span> member <span class="token keyword">in</span> root<span class="token punctuation">.</span>findall<span class="token punctuation">(</span><span class="token string">'object'</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+                value <span class="token operator">=</span> <span class="token punctuation">(</span>root<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'filename'</span><span class="token punctuation">)</span><span class="token punctuation">.</span>text<span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'size'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>root<span class="token punctuation">.</span>find<span class="token punctuation">(</span><span class="token string">'size'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         member<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>member<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>member<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>member<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+                         <span class="token builtin">int</span><span class="token punctuation">(</span>member<span class="token punctuation">[</span><span class="token number">4</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>text<span class="token punctuation">)</span>
+                         <span class="token punctuation">)</span>
+                xml_list<span class="token punctuation">.</span>append<span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+        column_name <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">,</span> <span class="token string">'width'</span><span class="token punctuation">,</span> <span class="token string">'height'</span><span class="token punctuation">,</span> <span class="token string">'class'</span><span class="token punctuation">,</span> <span class="token string">'xmin'</span><span class="token punctuation">,</span> <span class="token string">'ymin'</span><span class="token punctuation">,</span> <span class="token string">'xmax'</span><span class="token punctuation">,</span> <span class="token string">'ymax'</span><span class="token punctuation">]</span>
+        xml_df <span class="token operator">=</span> pd<span class="token punctuation">.</span>DataFrame<span class="token punctuation">(</span>xml_list<span class="token punctuation">,</span> columns<span class="token operator">=</span>column_name<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> xml_df
+
+
+    <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">for</span> folder <span class="token keyword">in</span> <span class="token punctuation">[</span><span class="token string">'train'</span><span class="token punctuation">,</span><span class="token string">'test'</span><span class="token punctuation">]</span><span class="token punctuation">:</span>
+            image_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token punctuation">(</span><span class="token string">'images/'</span> <span class="token operator">+</span> folder<span class="token punctuation">)</span><span class="token punctuation">)</span>
+            xml_df <span class="token operator">=</span> xml_to_csv<span class="token punctuation">(</span>image_path<span class="token punctuation">)</span>
+            xml_df<span class="token punctuation">.</span>to_csv<span class="token punctuation">(</span><span class="token punctuation">(</span><span class="token string">'images/'</span> <span class="token operator">+</span> folder <span class="token operator">+</span> <span class="token string">'_labels.csv'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> index<span class="token operator">=</span><span class="token boolean">None</span><span class="token punctuation">)</span>
+            <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Successfully converted xml to csv.'</span><span class="token punctuation">)</span>
+
+
+    main<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h3 id="_5、将-csv-转化成-tfrecord-文件"><a href="#_5、将-csv-转化成-tfrecord-文件" class="header-anchor">#</a> <strong>5、将 csv 转化成 tfrecord 文件</strong></h3> <div class="language- extra-class"><pre class="language-text"><code>    # 先进入models/research目录执行,不然会报错ModuleNotFoundError: No module named 'object_detection'
+    python setup.py install
+    # 如果报错：tensorflow.python.framework.errors_impl.NotFoundError: ; No such file or directory
+    python src/convert_to_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=train.record
+    python src/convert_to_tfrecord.py --csv_input=images/test_labels.csv --image_dir=images/test --output_path=test.record
+</code></pre></div><div class="language-py extra-class"><pre class="language-py"><code>    <span class="token comment"># 转换代码</span>
+    <span class="token triple-quoted-string string">&quot;&quot;&quot;
+    Usage:
+      # From tensorflow/models/
+      # Create train data:
+    	python src/convert_to_tfrecord.py --csv_input=images/train_labels.csv --image_dir=images/train --output_path=train.record
+
+      # Create test data:
+      python src/convert_to_tfrecord.py --csv_input=images/test_labels.csv --image_dir=images/test --output_path=test.record
+    &quot;&quot;&quot;</span>
+    <span class="token keyword">from</span> __future__ <span class="token keyword">import</span> division
+    <span class="token keyword">from</span> __future__ <span class="token keyword">import</span> print_function
+    <span class="token keyword">from</span> __future__ <span class="token keyword">import</span> absolute_import
+
+    <span class="token keyword">import</span> os
+    <span class="token keyword">import</span> io
+    <span class="token keyword">import</span> pandas <span class="token keyword">as</span> pd
+    <span class="token keyword">import</span> tensorflow <span class="token keyword">as</span> tf
+    <span class="token keyword">import</span> sys
+
+    <span class="token comment"># sys.path.append(&quot;../models/research/object_detection&quot;)</span>
+    <span class="token keyword">from</span> PIL <span class="token keyword">import</span> Image
+    <span class="token keyword">from</span> object_detection<span class="token punctuation">.</span>utils <span class="token keyword">import</span> dataset_util
+    <span class="token keyword">from</span> collections <span class="token keyword">import</span> namedtuple<span class="token punctuation">,</span> OrderedDict
+
+    flags <span class="token operator">=</span> tf<span class="token punctuation">.</span>app<span class="token punctuation">.</span>flags
+    flags<span class="token punctuation">.</span>DEFINE_string<span class="token punctuation">(</span><span class="token string">'csv_input'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'Path to the CSV input'</span><span class="token punctuation">)</span>
+    flags<span class="token punctuation">.</span>DEFINE_string<span class="token punctuation">(</span><span class="token string">'image_dir'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'Path to the image directory'</span><span class="token punctuation">)</span>
+    flags<span class="token punctuation">.</span>DEFINE_string<span class="token punctuation">(</span><span class="token string">'output_path'</span><span class="token punctuation">,</span> <span class="token string">''</span><span class="token punctuation">,</span> <span class="token string">'Path to output TFRecord'</span><span class="token punctuation">)</span>
+    FLAGS <span class="token operator">=</span> flags<span class="token punctuation">.</span>FLAGS
+
+
+    <span class="token comment"># TO-DO replace this with label map</span>
+    <span class="token keyword">def</span> <span class="token function">class_text_to_int</span><span class="token punctuation">(</span>row_label<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">if</span> row_label <span class="token operator">==</span> <span class="token string">'nine'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">1</span>
+        <span class="token keyword">elif</span> row_label <span class="token operator">==</span> <span class="token string">'ten'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">2</span>
+        <span class="token keyword">elif</span> row_label <span class="token operator">==</span> <span class="token string">'jack'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">3</span>
+        <span class="token keyword">elif</span> row_label <span class="token operator">==</span> <span class="token string">'queen'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">4</span>
+        <span class="token keyword">elif</span> row_label <span class="token operator">==</span> <span class="token string">'king'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">5</span>
+        <span class="token keyword">elif</span> row_label <span class="token operator">==</span> <span class="token string">'ace'</span><span class="token punctuation">:</span>
+            <span class="token keyword">return</span> <span class="token number">6</span>
+        <span class="token keyword">else</span><span class="token punctuation">:</span>
+            <span class="token boolean">None</span>
+
+
+    <span class="token keyword">def</span> <span class="token function">split</span><span class="token punctuation">(</span>df<span class="token punctuation">,</span> group<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        data <span class="token operator">=</span> namedtuple<span class="token punctuation">(</span><span class="token string">'data'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'filename'</span><span class="token punctuation">,</span> <span class="token string">'object'</span><span class="token punctuation">]</span><span class="token punctuation">)</span>
+        gb <span class="token operator">=</span> df<span class="token punctuation">.</span>groupby<span class="token punctuation">(</span>group<span class="token punctuation">)</span>
+        <span class="token keyword">return</span> <span class="token punctuation">[</span>data<span class="token punctuation">(</span>filename<span class="token punctuation">,</span> gb<span class="token punctuation">.</span>get_group<span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">for</span> filename<span class="token punctuation">,</span> x <span class="token keyword">in</span> <span class="token builtin">zip</span><span class="token punctuation">(</span>gb<span class="token punctuation">.</span>groups<span class="token punctuation">.</span>keys<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> gb<span class="token punctuation">.</span>groups<span class="token punctuation">)</span><span class="token punctuation">]</span>
+
+
+    <span class="token keyword">def</span> <span class="token function">create_tf_example</span><span class="token punctuation">(</span>group<span class="token punctuation">,</span> path<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        <span class="token keyword">with</span> tf<span class="token punctuation">.</span>gfile<span class="token punctuation">.</span>GFile<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>path<span class="token punctuation">,</span> <span class="token string">'{}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>group<span class="token punctuation">.</span>filename<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'rb'</span><span class="token punctuation">)</span> <span class="token keyword">as</span> fid<span class="token punctuation">:</span>
+            encoded_jpg <span class="token operator">=</span> fid<span class="token punctuation">.</span>read<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        encoded_jpg_io <span class="token operator">=</span> io<span class="token punctuation">.</span>BytesIO<span class="token punctuation">(</span>encoded_jpg<span class="token punctuation">)</span>
+        image <span class="token operator">=</span> Image<span class="token punctuation">.</span><span class="token builtin">open</span><span class="token punctuation">(</span>encoded_jpg_io<span class="token punctuation">)</span>
+        width<span class="token punctuation">,</span> height <span class="token operator">=</span> image<span class="token punctuation">.</span>size
+
+        filename <span class="token operator">=</span> group<span class="token punctuation">.</span>filename<span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">)</span>
+        image_format <span class="token operator">=</span> <span class="token string">b'jpg'</span>
+        xmins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        xmaxs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        ymins <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        ymaxs <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        classes_text <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+        classes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token punctuation">]</span>
+
+        <span class="token keyword">for</span> index<span class="token punctuation">,</span> row <span class="token keyword">in</span> group<span class="token punctuation">.</span><span class="token builtin">object</span><span class="token punctuation">.</span>iterrows<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+            xmins<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'xmin'</span><span class="token punctuation">]</span> <span class="token operator">/</span> width<span class="token punctuation">)</span>
+            xmaxs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'xmax'</span><span class="token punctuation">]</span> <span class="token operator">/</span> width<span class="token punctuation">)</span>
+            ymins<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'ymin'</span><span class="token punctuation">]</span> <span class="token operator">/</span> height<span class="token punctuation">)</span>
+            ymaxs<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'ymax'</span><span class="token punctuation">]</span> <span class="token operator">/</span> height<span class="token punctuation">)</span>
+            classes_text<span class="token punctuation">.</span>append<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">.</span>encode<span class="token punctuation">(</span><span class="token string">'utf8'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+            classes<span class="token punctuation">.</span>append<span class="token punctuation">(</span>class_text_to_int<span class="token punctuation">(</span>row<span class="token punctuation">[</span><span class="token string">'class'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        tf_example <span class="token operator">=</span> tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Example<span class="token punctuation">(</span>features<span class="token operator">=</span>tf<span class="token punctuation">.</span>train<span class="token punctuation">.</span>Features<span class="token punctuation">(</span>feature<span class="token operator">=</span><span class="token punctuation">{</span>
+            <span class="token string">'image/height'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>int64_feature<span class="token punctuation">(</span>height<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/width'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>int64_feature<span class="token punctuation">(</span>width<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/filename'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>bytes_feature<span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/source_id'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>bytes_feature<span class="token punctuation">(</span>filename<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/encoded'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>bytes_feature<span class="token punctuation">(</span>encoded_jpg<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/format'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>bytes_feature<span class="token punctuation">(</span>image_format<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/bbox/xmin'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>float_list_feature<span class="token punctuation">(</span>xmins<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/bbox/xmax'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>float_list_feature<span class="token punctuation">(</span>xmaxs<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/bbox/ymin'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>float_list_feature<span class="token punctuation">(</span>ymins<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/bbox/ymax'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>float_list_feature<span class="token punctuation">(</span>ymaxs<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/class/text'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>bytes_list_feature<span class="token punctuation">(</span>classes_text<span class="token punctuation">)</span><span class="token punctuation">,</span>
+            <span class="token string">'image/object/class/label'</span><span class="token punctuation">:</span> dataset_util<span class="token punctuation">.</span>int64_list_feature<span class="token punctuation">(</span>classes<span class="token punctuation">)</span><span class="token punctuation">,</span>
+        <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        <span class="token keyword">return</span> tf_example
+
+
+    <span class="token keyword">def</span> <span class="token function">main</span><span class="token punctuation">(</span>_<span class="token punctuation">)</span><span class="token punctuation">:</span>
+        writer <span class="token operator">=</span> tf<span class="token punctuation">.</span>python_io<span class="token punctuation">.</span>TFRecordWriter<span class="token punctuation">(</span>FLAGS<span class="token punctuation">.</span>output_path<span class="token punctuation">)</span>
+        path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> FLAGS<span class="token punctuation">.</span>image_dir<span class="token punctuation">)</span>
+        examples <span class="token operator">=</span> pd<span class="token punctuation">.</span>read_csv<span class="token punctuation">(</span>FLAGS<span class="token punctuation">.</span>csv_input<span class="token punctuation">)</span>
+        grouped <span class="token operator">=</span> split<span class="token punctuation">(</span>examples<span class="token punctuation">,</span> <span class="token string">'filename'</span><span class="token punctuation">)</span>
+        <span class="token keyword">for</span> group <span class="token keyword">in</span> grouped<span class="token punctuation">:</span>
+            tf_example <span class="token operator">=</span> create_tf_example<span class="token punctuation">(</span>group<span class="token punctuation">,</span> path<span class="token punctuation">)</span>
+            writer<span class="token punctuation">.</span>write<span class="token punctuation">(</span>tf_example<span class="token punctuation">.</span>SerializeToString<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+        writer<span class="token punctuation">.</span>close<span class="token punctuation">(</span><span class="token punctuation">)</span>
+        output_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>os<span class="token punctuation">.</span>getcwd<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span> FLAGS<span class="token punctuation">.</span>output_path<span class="token punctuation">)</span>
+        <span class="token keyword">print</span><span class="token punctuation">(</span><span class="token string">'Successfully created the TFRecords: {}'</span><span class="token punctuation">.</span><span class="token builtin">format</span><span class="token punctuation">(</span>output_path<span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+
+    <span class="token keyword">if</span> __name__ <span class="token operator">==</span> <span class="token string">'__main__'</span><span class="token punctuation">:</span>
+        tf<span class="token punctuation">.</span>app<span class="token punctuation">.</span>run<span class="token punctuation">(</span><span class="token punctuation">)</span>
+</code></pre></div><h2 id="二、训练准备"><a href="#二、训练准备" class="header-anchor">#</a> 二、训练准备</h2> <h3 id="_1、设置-labelmap-pbtxt"><a href="#_1、设置-labelmap-pbtxt" class="header-anchor">#</a> <strong>1、设置 labelmap.pbtxt</strong></h3> <p>训练前我们需要配置检测目标的类别，在 config/labelmap 中定义</p> <div class="language- extra-class"><pre class="language-text"><code>    item {
+      id: 1
+      name: 'nine'
+    }
+
+    item {
+      id: 2
+      name: 'ten'
+    }
+
+    item {
+      id: 3
+      name: 'jack'
+    }
+
+    item {
+      id: 4
+      name: 'queen'
+    }
+
+    item {
+      id: 5
+      name: 'king'
+    }
+
+    item {
+      id: 6
+      name: 'ace'
+    }
+</code></pre></div><h3 id="_2、选择需要训练的模型"><a href="#_2、选择需要训练的模型" class="header-anchor">#</a> <strong>2、选择需要训练的模型</strong></h3> <p>此处选择的是 faster_rcnn_inception_v2_coco_2018_01_28 模型；下载地址：<a href="http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz" target="_blank" rel="noopener noreferrer">http://download.tensorflow.org/models/object_detection/faster_rcnn_inception_v2_coco_2018_01_28.tar.gz<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>所有的模型列表请见此处：<a href="https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md" target="_blank" rel="noopener noreferrer">https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p><img src="/images/ai/self-define/4.png" alt="/images/ai/self-define"></p> <h3 id="_3、创建并修改模型配置文件"><a href="#_3、创建并修改模型配置文件" class="header-anchor">#</a> 3、创建并修改模型配置文件</h3> <p>需要修改的点是：</p> <ul><li>fine_tune_checkpoint: 下载的预训练模型路径/model.ckpt</li> <li>iput_path: &quot;/预处理数据生成的 tfrecords 格式数据的文件路径”，分为训练集和验证集两个；</li> <li>label_map_path: “/格式转换过程中使用过的类别与 ID 对应的 pbtxt 文件”</li> <li>num_classes: 我们自己的数据集的类别数</li></ul> <p>同时在这个配置文件中还可以更改训练时的 batch_size,学习率，epoch 数量，数据增强的方式，优化算法的选择，评价指标等。</p> <div class="language- extra-class"><pre class="language-text"><code>    # Faster R-CNN with Inception v2, configured for Oxford-IIIT Pets Dataset.
+    # Users should configure the fine_tune_checkpoint field in the train config as
+    # well as the label_map_path and input_path fields in the train_input_reader and
+    # eval_input_reader. Search for &quot;PATH_TO_BE_CONFIGURED&quot; to find the fields that
+    # should be configured.
+
+    model {
+      faster_rcnn {
+        num_classes: 6
+        image_resizer {
+          keep_aspect_ratio_resizer {
+            min_dimension: 600
+            max_dimension: 1024
+          }
+        }
+        feature_extractor {
+          type: 'faster_rcnn_inception_v2'
+          first_stage_features_stride: 16
+        }
+        first_stage_anchor_generator {
+          grid_anchor_generator {
+            scales: [0.25, 0.5, 1.0, 2.0]
+            aspect_ratios: [0.5, 1.0, 2.0]
+            height_stride: 16
+            width_stride: 16
+          }
+        }
+        first_stage_box_predictor_conv_hyperparams {
+          op: CONV
+          regularizer {
+            l2_regularizer {
+              weight: 0.0
+            }
+          }
+          initializer {
+            truncated_normal_initializer {
+              stddev: 0.01
+            }
+          }
+        }
+        first_stage_nms_score_threshold: 0.0
+        first_stage_nms_iou_threshold: 0.7
+        first_stage_max_proposals: 300
+        first_stage_localization_loss_weight: 2.0
+        first_stage_objectness_loss_weight: 1.0
+        initial_crop_size: 14
+        maxpool_kernel_size: 2
+        maxpool_stride: 2
+        second_stage_box_predictor {
+          mask_rcnn_box_predictor {
+            use_dropout: false
+            dropout_keep_probability: 1.0
+            fc_hyperparams {
+              op: FC
+              regularizer {
+                l2_regularizer {
+                  weight: 0.0
+                }
+              }
+              initializer {
+                variance_scaling_initializer {
+                  factor: 1.0
+                  uniform: true
+                  mode: FAN_AVG
+                }
+              }
+            }
+          }
+        }
+        second_stage_post_processing {
+          batch_non_max_suppression {
+            score_threshold: 0.0
+            iou_threshold: 0.6
+            max_detections_per_class: 100
+            max_total_detections: 300
+          }
+          score_converter: SOFTMAX
+        }
+        second_stage_localization_loss_weight: 2.0
+        second_stage_classification_loss_weight: 1.0
+      }
+    }
+
+    train_config: {
+      batch_size: 1
+      optimizer {
+        momentum_optimizer: {
+          learning_rate: {
+            manual_step_learning_rate {
+              initial_learning_rate: 0.0002
+              schedule {
+                step: 1
+                learning_rate: .0002
+              }
+              schedule {
+                step: 900000
+                learning_rate: .00002
+              }
+              schedule {
+                step: 1200000
+                learning_rate: .000002
+              }
+            }
+          }
+          momentum_optimizer_value: 0.9
+        }
+        use_moving_average: false
+      }
+      gradient_clipping_by_norm: 10.0
+      fine_tune_checkpoint: &quot;/Users/alexganggao/Documents/Study/tensorflow_detection/model/faster_rcnn_inception_v2_coco_2018_01_28/model.ckpt&quot;
+      from_detection_checkpoint: true
+      # Note: The below line limits the training process to 200K steps, which we
+      # empirically found to be sufficient enough to train the pets dataset. This
+      # effectively bypasses the learning rate schedule (the learning rate will
+      # never decay). Remove the below line to train indefinitely.
+      num_steps: 1000
+      data_augmentation_options {
+        random_horizontal_flip {
+        }
+      }
+    }
+
+
+    train_input_reader: {
+      tf_record_input_reader {
+        input_path: &quot;/Users/alexganggao/Documents/Study/tensorflow_detection/train.record&quot;
+      }
+      label_map_path: &quot;/Users/alexganggao/Documents/Study/tensorflow_detection/config/labelmap.pbtxt&quot;
+    }
+
+    eval_config: {
+      num_examples: 67
+      # Note: The below line limits the evaluation process to 10 evaluations.
+      # Remove the below line to evaluate indefinitely.
+      max_evals: 10
+    }
+
+    eval_input_reader: {
+      tf_record_input_reader {
+        input_path: &quot;/Users/alexganggao/Documents/Study/tensorflow_detection/test.record&quot;
+      }
+      label_map_path: &quot;/Users/alexganggao/Documents/Study/tensorflow_detection/config/labelmap.pbtxt&quot;
+      shuffle: false
+      num_readers: 1
+    }
+</code></pre></div><h3 id="_4、编写训练脚本，开始训练模型"><a href="#_4、编写训练脚本，开始训练模型" class="header-anchor">#</a> 4、编写训练脚本，开始训练模型</h3> <p>slim 是干嘛的？</p> <p>TF-slim 是 TensorFlow 的新轻量级高级 API（tensorflow.contrib.slim），用于定义，训练和评估复杂模型。 该目录包含用于训练和评估使用 TF-slim 的几种广泛使用的卷积神经网络（CNN）图像分类模型的代码。 它包含脚本，使您可以从头开始训练模型或从预先训练的网络权重中微调模型。 它还包含用于下载标准图像数据集，将其转换为 TensorFlow 的本机 TFRecord 格式并使用 TF-Slim 的数据读取和排队实用程序进行读取的代码</p> <p>如何使用 slim:</p> <ul><li>在 models/research 下面执行 <code>export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim</code></li> <li>拷贝 slim 到工程根目录，并执行</li></ul> <p><code>export PYTHONPATH=$PYTHONPATH:'pwd':'pwd'/slim</code></p> <p>或者在代码中引入</p> <div class="language-py extra-class"><pre class="language-py"><code>    <span class="token comment"># 将 slim 添加到查找路径中</span>
+    <span class="token keyword">def</span> <span class="token function">add_slim_to_path</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">:</span>
+        slim_path <span class="token operator">=</span> os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>abspath<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>join<span class="token punctuation">(</span>os<span class="token punctuation">.</span>path<span class="token punctuation">.</span>dirname<span class="token punctuation">(</span>__file__<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'../slim'</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+        sys<span class="token punctuation">.</span>path<span class="token punctuation">.</span>append<span class="token punctuation">(</span>slim_path<span class="token punctuation">)</span>
+</code></pre></div><div class="language-bash extra-class"><pre class="language-bash"><code>    <span class="token comment"># 启动模型训练</span>
+    python src/train.py
+</code></pre></div><p>如果出现如下图则表示模型正在训练</p> <p><img src="/images/ai/self-define/5.png" alt="/images/ai/self-define"></p> <p>我们可以在控制台执行，查看实时训练进展</p> <div class="language- extra-class"><pre class="language-text"><code>    # logdir为模型训练的结果地址：TRAIN_DATA_PATH
+    tensorboard --logdir=train_data/faster
+</code></pre></div><p><img src="/images/ai/self-define/6.png" alt="/images/ai/self-define"></p> <p>等待很久很久的时间显示训练完成（此处只设置了训练步长为 1000）</p> <p><img src="/images/ai/self-define/7.png" alt="/images/ai/self-define"></p> <h3 id="_5、模型导出"><a href="#_5、模型导出" class="header-anchor">#</a> 5、模型导出</h3> <p>这一步的前提是：上一步模型训练完成</p> <p>我们此时需要对训练完成的数据进行模型导出。<code>tf object detection</code>也提供了相应的<code>api</code>，具体文件路径是 t<code>f/model/object_detection/export_inference_graph.py</code></p> <p>使用提供的框架可以直接调用</p> <div class="language- extra-class"><pre class="language-text"><code>    python src/export.py
+</code></pre></div><p>执行完成之后发现工程目录下存在了：</p> <p><img src="/images/ai/self-define/8.png" alt="/images/ai/self-define"></p> <p>其中标红处就是我们训练的模型。</p> <h3 id="_6、模型检测"><a href="#_6、模型检测" class="header-anchor">#</a> 6、模型检测</h3> <p>在得到了训练好的模型之后，我们就能用它对我们的视图进行目标检测了。</p> <p>检测这边<code>tf</code>提供的目标代码是<code>models/research/object_detection/object_detection_tutorial.py</code>可以自行参考，根据自己需求改写。</p> <div class="language- extra-class"><pre class="language-text"><code>    python src/detection.py
+</code></pre></div><p>可以看到工程下出现了检测结果：</p> <p><img src="/images/ai/self-define/9.png" alt="/images/ai/self-define"></p> <h3 id="_7、模型评估"><a href="#_7、模型评估" class="header-anchor">#</a> 7、模型评估</h3> <p>单我们单纯跑一张图预测的话其实还不足以评估模型的准确性，所以<code>tf</code>也提供了相应模型评估的函数。</p> <p>具体可以参考<code>tf/model/object_detection/legacy/eval</code></p> <div class="language- extra-class"><pre class="language-text"><code>    python src/eval.py
+</code></pre></div><p>其实就是使用我们在模型<code>config/faster_rcnn_inception_v2_pets.config</code>中配置 的<code>eval_input_reader.tf_record_input_reader</code>中的测试集数据去测试的。控制台会输出该模型下每个类别的检测准确率。</p> <p><img src="/images/ai/self-define/10.png" alt="/images/ai/self-define"></p> <p>可能出现的问题：</p> <p>NameError: name 'unicode' is not defined</p> <p>解决办法：</p> <p>Python2 的 unicode 函数在 Python3 中被命名为 str。在 Python3 中使用 ·str 来代替 Python2 中的 unicode.</p> <h2 id="参考"><a href="#参考" class="header-anchor">#</a> 参考</h2> <ul><li><a href="https://kenlwk.github.io/3_CustomObjectReconition#%E4%BB%8B%E7%B4%B9" target="_blank" rel="noopener noreferrer">https://kenlwk.github.io/3_CustomObjectReconition#介紹<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li> <li><a href="https://segmentfault.com/a/1190000022286170" target="_blank" rel="noopener noreferrer">https://segmentfault.com/a/1190000022286170<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div> <footer class="page-edit"><!----> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">4/17/2020, 11:05:53 PM</span></div></footer> <!----> </main></div><div class="global-ui"><!----></div></div>
+    <script src="/assets/js/app.2121b0c3.js" defer></script><script src="/assets/js/2.79ae508a.js" defer></script><script src="/assets/js/8.7975df1b.js" defer></script>
+  </body>
+</html>
