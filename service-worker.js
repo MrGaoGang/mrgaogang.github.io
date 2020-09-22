@@ -27,95 +27,95 @@ self.addEventListener('message', (event) => {
 self.__precacheManifest = [
   {
     "url": "404.html",
-    "revision": "6d3cf498c0ce0c44f495daceba8ef8d0"
+    "revision": "3dee50e016fce284459b635da91ae2e2"
   },
   {
     "url": "ai/index.html",
-    "revision": "382bb0c18cd3b00e561ebb417a208867"
+    "revision": "48e149fc61f2f64bdf21051a04bbef7f"
   },
   {
     "url": "ai/tensorflow自带demo演示.html",
-    "revision": "8b54e7e405d4bfc8c3b4b74f84167139"
+    "revision": "290b9795798fcf703b81ba22bd533d9f"
   },
   {
     "url": "ai/tensorflow训练自己的模型.html",
-    "revision": "a19ff12fac790a4a2f7efc301cb57a28"
+    "revision": "ebaead3848c8961e6b91932c15cfed4c"
   },
   {
     "url": "android/Android动态修改桌面图标.html",
-    "revision": "5f4345117ccfb9aaac7bc72bbbd9fc20"
+    "revision": "0fbd3fef5a776d996156a52da82cca0f"
   },
   {
     "url": "android/index.html",
-    "revision": "43ff0ce1301e5f6936f2244cc7a00ea9"
+    "revision": "a4698af2cf661ad63c0201f3a5397343"
   },
   {
     "url": "android/JS如何唤醒App.html",
-    "revision": "709e3a746c1795f702a671d9f001c626"
+    "revision": "fd9f9dd37e01155b2a689645c65b6aac"
   },
   {
     "url": "android/performance/Android性能优化之绘制优化.html",
-    "revision": "e6e56bbba4c305ee6079025e30e79b35"
+    "revision": "7faae564471fc1964afb2d70f9c2e4d9"
   },
   {
     "url": "android/performance/合理的刷新机制.html",
-    "revision": "c2cec456c791203eaed41e5201f00fcc"
+    "revision": "878e9e870026de423de8f97c7db5733a"
   },
   {
     "url": "android/performance/布局优化.html",
-    "revision": "db1cd8f139e4cfcf83dced6df5929e58"
+    "revision": "105a6f33a091aa526f12152dacfd1fe9"
   },
   {
     "url": "android/performance/提升动画性能.html",
-    "revision": "b39c0f1ecd6a60e9562369c6cf94beee"
+    "revision": "7fd97588edd3e6af929ef303cd7f5457"
   },
   {
     "url": "android/performance/避免过度绘制.html",
-    "revision": "d16a9ca4c7f2c95c5b7f748997e09394"
+    "revision": "c1eb18c0fafce330a46bce3210ef0c7e"
   },
   {
     "url": "article/oview/chart_specific.html",
-    "revision": "7b4a09a9b7bc8cff0d481459fda51be6"
+    "revision": "b97c088d2f8db13168ca264ca461d309"
   },
   {
     "url": "article/oview/Chart.html",
-    "revision": "da84fb0162f83d5f4e86074ae83a8157"
+    "revision": "6afb0e08a287003b3a2f788f75713fcb"
   },
   {
     "url": "article/oview/chart/area.html",
-    "revision": "0f3cb60df73ebfa7e2c5358132fcf4f9"
+    "revision": "3947b11c248bd19fd99b3a62db457909"
   },
   {
     "url": "article/oview/chart/histo.html",
-    "revision": "aa33e8f2ea79fb6ad1872674109f5777"
+    "revision": "a83f0a9eed75fe6c3699be8f39c4e2ef"
   },
   {
     "url": "article/oview/chart/intercation.html",
-    "revision": "e29caff8448ff14a6978f3f6206a67ef"
+    "revision": "9c888affa574c16f4e391246a53dce84"
   },
   {
     "url": "article/oview/chart/line.html",
-    "revision": "81e151aded862a21f67536fb09dfd9d3"
+    "revision": "3031831202916eb302beb098e15ce104"
   },
   {
     "url": "article/oview/chart/pie.html",
-    "revision": "f1c6adeb87fa33609ffad70a78a458d4"
+    "revision": "2993b6662bc7f4887e29424c6f6839cb"
   },
   {
     "url": "article/oview/chart/point.html",
-    "revision": "dd855e9ca5e94d723d87a17052148912"
+    "revision": "6bfab8811ef10a9098db7b8f5e6887da"
   },
   {
     "url": "article/oview/chart/radar.html",
-    "revision": "56d9c3d4040e788ca2b2ee14ffd7c77a"
+    "revision": "239e79a0e9803d1633ad7eb7705c94b5"
   },
   {
     "url": "article/oview/index.html",
-    "revision": "00caaf176bb8fbab9b2d8594577b4ee2"
+    "revision": "f0df3248a806e9029b25e56d22d90dd8"
   },
   {
     "url": "article/oview/Pie.html",
-    "revision": "005ae59d2a2468e1819c0cbdf44fd78f"
+    "revision": "4369ed9ed099df5cd15d41ff722f570f"
   },
   {
     "url": "assets/css/0.styles.028e881c.css",
@@ -1034,12 +1034,12 @@ self.__precacheManifest = [
     "revision": "f7733311d610055bed5d98e68ee4e1cd"
   },
   {
-    "url": "assets/js/app.a6cd04d0.js",
-    "revision": "9aa988af263ca9f563fceea8eee14805"
+    "url": "assets/js/app.69afc6c5.js",
+    "revision": "8e3b25847cbda9f1402be15b9159dc7c"
   },
   {
     "url": "babel/babel-hooks.html",
-    "revision": "c00923670170772ba00531213e43af79"
+    "revision": "6b79f6f3482aa8c86fc9b83dfa028417"
   },
   {
     "url": "css.png",
@@ -1047,15 +1047,15 @@ self.__precacheManifest = [
   },
   {
     "url": "engine/企业级微服务方案.html",
-    "revision": "295f76e07429b5758bcda0dfb2ebe702"
+    "revision": "01f128cbbe0d5c5a1976dfa4b9e59187"
   },
   {
     "url": "engine/前端工程能力思考.html",
-    "revision": "685e00b90ba8e033f548b475a5e3ef24"
+    "revision": "3c97635830b4d8eab120490c8038bd50"
   },
   {
     "url": "engine/前端性能优化度量.html",
-    "revision": "e2393c5c8fdc6c8a1148c43837f2c289"
+    "revision": "c914dad573007b76207e0f1fc435bcdf"
   },
   {
     "url": "fonts.png",
@@ -1099,7 +1099,7 @@ self.__precacheManifest = [
   },
   {
     "url": "githubApi.html",
-    "revision": "09e02c2d6d268f45fa689e5419c9a8a2"
+    "revision": "416c1d7a7b7c0384bf7911742f2a81e3"
   },
   {
     "url": "header.png",
@@ -1511,115 +1511,115 @@ self.__precacheManifest = [
   },
   {
     "url": "index.html",
-    "revision": "d523e81d73414a361bf87f6201224537"
+    "revision": "22ff3b4a8a7f255ebae088dab2175d98"
   },
   {
     "url": "interview/Http面试汇总.html",
-    "revision": "01e638ad7f72a6ab1304b8e63598c0c5"
+    "revision": "a1fd42950d0c1bc43ffe6105b2fc93c1"
   },
   {
     "url": "interview/index.html",
-    "revision": "61ef3a002dfd659478c78d954319114f"
+    "revision": "c9efddcac45257b4f897708d3fe8e45d"
   },
   {
     "url": "interview/JavaScript面试汇总.html",
-    "revision": "87c126c11c742e39a45213b43edabad4"
+    "revision": "9ca5ac37bd172b43f9345b46d89f2d10"
   },
   {
     "url": "interview/Vue面试汇总.html",
-    "revision": "90ce4d4801a6dd3ee797a2ba93317571"
+    "revision": "24cf6a55a7259f77c537ab7c88087d77"
   },
   {
     "url": "interview/性能优化实践.html",
-    "revision": "25f5af8c57fc71441dfa8ab18c33758d"
+    "revision": "fa854b88b99e4f0b3de1544790edfd4d"
   },
   {
     "url": "interview/笔试题.html",
-    "revision": "f59b66d94c7c54efb528f4395ad1cc44"
+    "revision": "c625c24a80be6ba5da7c1e56913178fd"
   },
   {
     "url": "interview/腾讯面试.html",
-    "revision": "dc61e8c60d8b949e2696342356fe2e9f"
+    "revision": "3af30e40d10efd93f612a6f5863784db"
   },
   {
     "url": "interview/问答题.html",
-    "revision": "fe951d8e236027203802740a01b96222"
+    "revision": "ba84d67129d9bfbb6a268925e1b6834b"
   },
   {
     "url": "interview/面试记录.html",
-    "revision": "d8e2308256897bf70a20f2721ee697e8"
+    "revision": "7555a0258cdf60170365670d5b01d934"
   },
   {
     "url": "introduce.html",
-    "revision": "2fd99bd1fe8075ef7c6e7cef2bda2b8e"
+    "revision": "c5c0a09349242733e629c71efa85279b"
   },
   {
     "url": "ios/controller/UIViewController使用详解.html",
-    "revision": "9485351ef115adcf49639349bb9d8bc3"
+    "revision": "bced1357e0482a9e1af4f8f9eb91a376"
   },
   {
     "url": "ios/data/IOS的数据存取.html",
-    "revision": "f29d6f7c139171d4fd8f028e3293c3b3"
+    "revision": "156a15e5d2d39d1fd6a8d8df0ffe6a19"
   },
   {
     "url": "ios/example/wechat/index.html",
-    "revision": "b1bcdb4f520932deb8f0935d0f966dd4"
+    "revision": "8c18128e8c10036761befd78f5ee76c4"
   },
   {
     "url": "ios/grid/UICollectionView的使用.html",
-    "revision": "50b7cdd7484956adf3abfe3b1d2a4147"
+    "revision": "94ed4e6d0e784e8996c2b1b41977bad6"
   },
   {
     "url": "ios/index.html",
-    "revision": "48113c87177dc6e475417bb68fdf0300"
+    "revision": "9dbd1866338aa679dcef99cfa62daad2"
   },
   {
     "url": "ios/jscore/index.html",
-    "revision": "d109c65015135a6d2a6cae4e64cdbd40"
+    "revision": "debb31c33e95d2214cff9ddf6d6e89bd"
   },
   {
     "url": "ios/life/浅谈ViewController生命周期.html",
-    "revision": "57a1c2f8289e5d2ce3f13f98f8d5bf43"
+    "revision": "67b22da0d8fe70a24cc8877c7fbd8a0e"
   },
   {
     "url": "ios/net/index.html",
-    "revision": "83994522bb25afbd1d27a80f34f7c739"
+    "revision": "d78766b95f5c0e521da5139bad8c8b5b"
   },
   {
     "url": "ios/notification/index.html",
-    "revision": "39e2d25f374622bcbc479b050be6e6a3"
+    "revision": "1bbc368c478153b89b3f9bad9174ffd2"
   },
   {
     "url": "ios/phone/index.html",
-    "revision": "1617e5586a4a1a70587050ce2c9bfc70"
+    "revision": "57d64a0c93e4c05d926033808ecf53d0"
   },
   {
     "url": "ios/question/_weakSelf使用场景.html",
-    "revision": "b3b3169ded08bf44a5fb46bbd1d6ae83"
+    "revision": "a864c5367ccefc45d38230ad3c22de43"
   },
   {
     "url": "ios/question/index.html",
-    "revision": "22e7f3d4afd1c71baea244cfb9abfb75"
+    "revision": "a50135edfb43175e59ab41b310526330"
   },
   {
     "url": "ios/schema/index.html",
-    "revision": "60edaebd3a85fb81ab42388248712a02"
+    "revision": "0f6fa35f00655b17df75708a7e769502"
   },
   {
     "url": "ios/tab/TabBar使用详解.html",
-    "revision": "05a24f4918a25d26677151029873b9a4"
+    "revision": "7371c32bd494c0e7294ca1fdf8b5a74c"
   },
   {
     "url": "ios/tableview/TableView的使用.html",
-    "revision": "04f6ac36b7c5d4bd0dc17c4dddb9a676"
+    "revision": "a68f947d15f0ce3a26670610a026481e"
   },
   {
     "url": "ios/timer/index.html",
-    "revision": "bd8898b6a57bb4b767ea90e3def6c6ee"
+    "revision": "4ec2bf8129fea725dbd54b7929a5273f"
   },
   {
     "url": "ios/webview/index.html",
-    "revision": "9ab7d1ffa70df9695023742901ea3e83"
+    "revision": "86d4c3e662b5722d8ec4d98fac01ca30"
   },
   {
     "url": "javascript.png",
@@ -1627,275 +1627,275 @@ self.__precacheManifest = [
   },
   {
     "url": "javascript/1px.html",
-    "revision": "788d9a84754a2d6df7002066629c3a4c"
+    "revision": "01113add1ec639c785482937e262b63f"
   },
   {
     "url": "javascript/base/Http缓存详解.html",
-    "revision": "15b7cbf0f40fba027d6af1dea987f3d7"
+    "revision": "401fcb389481547178fd96b36e5b72e0"
   },
   {
     "url": "javascript/base/Javascript中this绑定详解.html",
-    "revision": "3dea7aa5559bd81c44f5e5262172e971"
+    "revision": "8cc86116faf5fa8745185d78d19e9cc4"
   },
   {
     "url": "javascript/base/JavaScript中改变this指向有几种方式.html",
-    "revision": "a391b5f6157e6b09c4a077a7c7866027"
+    "revision": "0831b3c045616cdceff2e2d6f9273884"
   },
   {
     "url": "javascript/base/Javascript寄生式组合继承详解.html",
-    "revision": "666cb100a32fb4787a0039ccdfab13a0"
+    "revision": "b75f0a8c9fe2acc3ca525de462b13595"
   },
   {
     "url": "javascript/base/Javascript对闭包的理解.html",
-    "revision": "c5407ae3bf41139e518234ae47864121"
+    "revision": "57e061a90cb1b82dc65fc7d6751d25e4"
   },
   {
     "url": "javascript/base/JavaScript常见ployfill.html",
-    "revision": "039e9ccc051ebe511a38d641531a6e53"
+    "revision": "6fec9d48d248478b9992c7149d986c88"
   },
   {
     "url": "javascript/base/Javascript柯里化和偏函数实现.html",
-    "revision": "20aca0af752aca17f4e518ffbc2a1776"
+    "revision": "2c0a33a06ef9051ca081884f999ab9c8"
   },
   {
     "url": "javascript/base/Javascript模块化发展AMD,CMD,CommonJS,UMD,ES6.html",
-    "revision": "1aea3fe0270771cc386a7aa1f3d85703"
+    "revision": "c4aaeff380f423ed4f9f939d09578ce7"
   },
   {
     "url": "javascript/base/Javascript的bind的polyfill的理解.html",
-    "revision": "97079dd1260f60adcdde667da6ff7648"
+    "revision": "eb75e0319c79d832d80878ab44661da8"
   },
   {
     "url": "javascript/base/Javascript的call和apply和bind方法.html",
-    "revision": "01529ee90fe3a28c6b14ec29252a7110"
+    "revision": "ee99d046f6ce838d6f072e60210a326a"
   },
   {
     "url": "javascript/base/Javascript的变量提升和函数提升.html",
-    "revision": "77aa370abeebcd0a14b99986cc3c0dc6"
+    "revision": "f542e2c4ba45ca1d5e302523f0c27442"
   },
   {
     "url": "javascript/base/new_A和A的区别.html",
-    "revision": "0694fde25a8545ad16f0169980ec705e"
+    "revision": "57faaf6c2932cb346941127ec361a011"
   },
   {
     "url": "javascript/base/Object.create和New的区别.html",
-    "revision": "4ab73fb43b7dcb100f9fa3f7b87be06d"
+    "revision": "5842e36cfa3b90070cc7d01fa4baccf3"
   },
   {
     "url": "javascript/base/你不知道的Javascript上.html",
-    "revision": "e6692a48072c935c964274e5c700a195"
+    "revision": "8204a7a1e05c345cbad4f0dc49f9fe67"
   },
   {
     "url": "javascript/base/你不知道的Javascript中.html",
-    "revision": "d0f2beecaa2c38cd4e907e896d30ff63"
+    "revision": "bdbeada3ec34bb23f14c64d17480f7ba"
   },
   {
     "url": "javascript/base/对Object.create和类式继承的理解.html",
-    "revision": "a412bbfddba9f44336f9170580cfe664"
+    "revision": "27e6fde353506150e2edbf7797959685"
   },
   {
     "url": "javascript/deep/前端页面劫持和反劫持.html",
-    "revision": "f6e86c56daae4e25169d26b6de43e6b1"
+    "revision": "c237ec2b59980f4a5443649b901ca7bf"
   },
   {
     "url": "javascript/deep/页面预加载.html",
-    "revision": "b6809249e793cb7322fc6f649814f6e3"
+    "revision": "54329e8ad1ed34b78b0d87ede41d0e9d"
   },
   {
     "url": "javascript/index.html",
-    "revision": "d9efc56a58562e1051a9dee1ba21404e"
+    "revision": "cd258e39a4f89ef9359f20f8baa40e2b"
   },
   {
     "url": "javascript/learn.html",
-    "revision": "39861e975672406312fe44ecf9491601"
+    "revision": "3fe9b91276d96e8389e564e93f03e2cd"
   },
   {
     "url": "javascript/lerna.html",
-    "revision": "3f5d9cd9a69519c509f46805ec0084e4"
+    "revision": "2e417a86436c51563fe1479b195f9fad"
   },
   {
     "url": "javascript/performance/性能优化实践.html",
-    "revision": "8e2ae74ef4d47bd1700bb5d679b44a70"
+    "revision": "8566613a965bcb9c5d7367c6d3a9f824"
   },
   {
     "url": "javascript/performance/懒加载原理.html",
-    "revision": "5812ccb9af6aff53f927c08d5bddcc80"
+    "revision": "8bad31bf44accc5985f34440bbd31341"
   },
   {
     "url": "javascript/proxy.html",
-    "revision": "38ccc40793f55bc459fc9ed812f8e2d0"
+    "revision": "1caae10f7cddd891adcec4aa1acc8791"
   },
   {
     "url": "javascript/tools.html",
-    "revision": "b0aeb3fe0f34da5b905544756b277872"
+    "revision": "6b2020df7405724be666b8eb9899387c"
   },
   {
     "url": "javascript/webpack/chunk-hash,hash和content-hash的区别.html",
-    "revision": "ac6e24ea4ed2fe2a5344d259703c633e"
+    "revision": "70d63984580a8ed8c87710525326d42e"
   },
   {
     "url": "javascript/webpack/webpack-chain常用配置.html",
-    "revision": "65efe10d8b1882cada983bc1e79f8eff"
+    "revision": "ff17746bf51370f9390cde4694c1cba7"
   },
   {
     "url": "javascript/webpack/webpack模块异步加载原理解析.html",
-    "revision": "52b3e40330c776ee644fe092faac4b26"
+    "revision": "2c901ddfb94d0252bf1e850c37b5a01f"
   },
   {
     "url": "javascript/webpack/使用webpack的require.context按需打包.html",
-    "revision": "8c21e6dc8d59b1e393367129c46d9cd1"
+    "revision": "1a385c2faeab3800ac5fdd6fed828aff"
   },
   {
     "url": "mendix/env.html",
-    "revision": "5c351b4e268566050bdc73928553c78f"
+    "revision": "995baab81aec4f4a7f6e8d8bda104995"
   },
   {
     "url": "mendix/index.html",
-    "revision": "004e730aced3b9b5aa9c847273a6f693"
+    "revision": "46932dfab4dd4b6e7ed93ae2b8a39089"
   },
   {
     "url": "mendix/javaaction.html",
-    "revision": "b44151b74b5c76725ccc454959f290f6"
+    "revision": "a2faf0d31872b4cf67eb1a8c54c26e14"
   },
   {
     "url": "mendix/Mendix后台程序环境搭建.html",
-    "revision": "79cca49e7dd8ed954d193cf692c6725c"
+    "revision": "dd2feba4c53e2af6313338685dd2b68a"
   },
   {
     "url": "mendix/study.html",
-    "revision": "f7755e54dfa8b3e1d4209819cc96f379"
+    "revision": "dea9ea51d4463df8075985fa9f1f8a12"
   },
   {
     "url": "mendix/widget.html",
-    "revision": "c674569cb9fd967929ad4062175a9aa0"
+    "revision": "022b1f6bcc7e1a93d44ddb664771070c"
   },
   {
     "url": "mendix/widgets/index.html",
-    "revision": "90c18390a89602e62e0e1881908f3e5c"
+    "revision": "4aae92b5806f35ee71b8905289a193db"
   },
   {
     "url": "mendix/widgets/Vue_Mendix.html",
-    "revision": "9ac9891651734225413e85bd835d7846"
+    "revision": "fc0617b896dc35e94f9e19a05e090018"
   },
   {
     "url": "mendix/widgets/常用API.html",
-    "revision": "c5eccdabe2668507c6f67d7acfa6d3ba"
+    "revision": "851559de6b5e8747062a9ee47db59d99"
   },
   {
     "url": "mendix/widgets/开发组件前工具的准备.html",
-    "revision": "e6c7432ee5adfd73f3b4c27982f7c564"
+    "revision": "e0efe08d2cfa981c4ccdc1d305097acb"
   },
   {
     "url": "mendix/widgets/详细API.html",
-    "revision": "a1e12bc5e115b0d6a26a58de748aac02"
+    "revision": "b2e8914c2d3c5203e8b09dee16c6c6cb"
   },
   {
     "url": "mendix/一些功能的实现.html",
-    "revision": "2bf02f190a245741a9dec3336207b8b6"
+    "revision": "b6b19aeea2618b9b1afd2d14c03b0c5e"
   },
   {
     "url": "mendix/获取配置信息,使用java创建Rest服务.html",
-    "revision": "7fce7c341e1c355b5ee74c69e81680a9"
+    "revision": "4bf45693a49a3d26efd8f48ded2d8bca"
   },
   {
     "url": "mobile/index.html",
-    "revision": "8e622395c6c0c19c21f47adbcb4a88d1"
+    "revision": "f2c333005a49c09b0a7d9161d3fb984b"
   },
   {
     "url": "open/index.html",
-    "revision": "ded09f4197c97d5041891834d08a8841"
+    "revision": "bfab721176ec96de674f1bf6ce46cc61"
   },
   {
     "url": "open/luckly_popup_window.html",
-    "revision": "75a7dd83e7746abe2e82d317c1f19c17"
+    "revision": "3b1fb9cba8524d568d88f6abbb98f8ec"
   },
   {
     "url": "open/luckly_recyclerview.html",
-    "revision": "1edf9d996bc26579d4b991f2181dd443"
+    "revision": "5a7e9bb7733c997b1b38d97c81fb87b5"
   },
   {
     "url": "open/vue_template.html",
-    "revision": "43442f9b03b5b47f49e1709e1197087c"
+    "revision": "d60563af38d49213062ad91998cfa5c9"
   },
   {
     "url": "other/android_ready.html",
-    "revision": "8f53139756e13e050afa1b439155dcc1"
+    "revision": "77c3a3e81a62b6d993d38282473a6127"
   },
   {
     "url": "other/base_info.html",
-    "revision": "d7938f8e05cf0f57a408cb2b4534e20c"
+    "revision": "c9582ed140d80a2d8b0387a5c98f3298"
   },
   {
     "url": "other/linux.html",
-    "revision": "821c74def7e88f63d962efaea9192d43"
+    "revision": "3559d5afb7d86acdd69e949544692fba"
   },
   {
     "url": "other/ready.html",
-    "revision": "1ae31fc2da4de41178c079a58a643a29"
+    "revision": "8fd01fddf2f9c7248b097877e2520bdb"
   },
   {
     "url": "other/vscode.html",
-    "revision": "abf7e148ef72677cd697090faf877565"
+    "revision": "627147cfdbe0d188f0f15ec8304901f5"
   },
   {
     "url": "other/work.html",
-    "revision": "15613940556590cf51d22750634de976"
+    "revision": "9238e74172fe8fc61dcbd9f286ba602c"
   },
   {
     "url": "react/index.html",
-    "revision": "332824cd8138510ee911ff2c1b37fd0e"
+    "revision": "c1e7d0d73931dec83e599685fdb99451"
   },
   {
     "url": "react/Mobx异步Action方案.html",
-    "revision": "5e32d7888d37785c9e9ff44775d7ffdb"
+    "revision": "2409cbb325b949474504899b6b362f90"
   },
   {
     "url": "react/ReactNative与iOS原生通信原理解析-JS加载及执行篇.html",
-    "revision": "7bf6209ecedd785cc638ba86b7fd8d4b"
+    "revision": "dc7cfd705866d9c76e29b6a91f0f5dc9"
   },
   {
     "url": "react/ReactNative与iOS原生通信原理解析-初始化.html",
-    "revision": "4863569e234ede2140c1a5fc7c1f1d39"
+    "revision": "e984c1b5ad7c671ddc3a83020ecbc0dc"
   },
   {
     "url": "react/ReactNative与iOS原生通信原理解析-通信篇.html",
-    "revision": "cd70daacebaa423daa764caf781c41be"
+    "revision": "a739b42ab71e8797cb20e70823a89c82"
   },
   {
     "url": "react/ReactNative和js版本不一致问题分析.html",
-    "revision": "bb5e5e1ce0b23265b8c5bcddfbb06026"
+    "revision": "07c57cb4cf719569a171f8750b2e8cd0"
   },
   {
     "url": "react/React中使用bind函数和箭头函数效率比较.html",
-    "revision": "8271e87923bfdfd7df9d7dd9973bbc60"
+    "revision": "5acbe2adf4a7caddc7ec2849baaa59b0"
   },
   {
     "url": "react/React状态管理框架Redux使用.html",
-    "revision": "4278304b3732a51befaf708ba2e16ee3"
+    "revision": "c58dc2c35fb6b5d93e6f5ab211ec6dd4"
   },
   {
     "url": "react/React高阶组件的理解.html",
-    "revision": "8fb23aba11ff65525a2d9345a9cf2afe"
+    "revision": "22fcf0744b5ff70270cd0d1c3dd624e8"
   },
   {
     "url": "react/Redux中间件详解.html",
-    "revision": "ccf46f9953adddb2a0232edb16d3c619"
+    "revision": "4ef8cd57994d1fba5e56352e333887b2"
   },
   {
     "url": "react/Redux异步Action方案.html",
-    "revision": "e7f0cf28d3e000ec7eb5f9f16057d890"
+    "revision": "961b9e40a36ff77722c90d6544f54309"
   },
   {
     "url": "react/RN动态化与静态化首屏加载性能对比.html",
-    "revision": "a323d5ff0128ae4b88de36d23e7d3db3"
+    "revision": "489c5b82131fb46b3feb5b763a18306e"
   },
   {
     "url": "react/如何使用React创建一个弹窗组件.html",
-    "revision": "262f3873f07699cfa2e14c963c3a3b48"
+    "revision": "80a1d5c0d02e7738e72f02ad74e5a5dc"
   },
   {
     "url": "react/已有Android项目如何实现动态加载RN.html",
-    "revision": "13b3de9b687179f38b7b7e2143b9d7f7"
+    "revision": "7454faede741b23f61fbc404501cb1e8"
   },
   {
     "url": "recommand/android.jpeg",
@@ -2139,71 +2139,71 @@ self.__precacheManifest = [
   },
   {
     "url": "view-designer.html",
-    "revision": "46cc846f4ceacc7e5416e7c9ab3ad799"
+    "revision": "beb3a1a4642e62254231f2c798995697"
   },
   {
     "url": "vue/deep/Vue响应式原理解析.html",
-    "revision": "d18c826293e5ddfe223fb15f461e7bba"
+    "revision": "6440433597ea316588ef39ba07837a6c"
   },
   {
     "url": "vue/deep/Vue多入口打包性能优化.html",
-    "revision": "d6c916fd72f6895bcd09d0bd37adcdf1"
+    "revision": "590506941c245bc89becb2b89efe7044"
   },
   {
     "url": "vue/index.html",
-    "revision": "07e1c0c99ca393bc23390b6aef9a3abc"
+    "revision": "e26f1313e1daad86b934e7a706587e10"
   },
   {
     "url": "vue/program/如何全局显示工具栏.html",
-    "revision": "d11b4399a3b6e23d67e49d4b18b388a9"
+    "revision": "1983f48d77af7312fcc5921b730471ad"
   },
   {
     "url": "vue/proxy.html",
-    "revision": "a7928a605e84bcfa228b5069d5a071e2"
+    "revision": "15ff354fdda1ff7d3f57d9dd387754fc"
   },
   {
     "url": "vue/test/Jest测试结果分析.html",
-    "revision": "8097d14815d905c06077136a8753c030"
+    "revision": "afd75d5711dbb5d0e39706f2bd048ba0"
   },
   {
     "url": "vue/test/Vue使用jest单元测试详解.html",
-    "revision": "ae6ac0e975f4583d8d7b99007bd554cc"
+    "revision": "2f7698c3a0b79868cfc4393e41b0daad"
   },
   {
     "url": "vue/Vue-cli插件开发.html",
-    "revision": "6c13d06ca13f56d4eea5abb11d15b105"
+    "revision": "8cd3fde6ba7b68fe36570093c8393018"
   },
   {
     "url": "vue/Vuex中Getter,Action,Mutation函数参数说明.html",
-    "revision": "ce102265420134f236b067fa7272b7b9"
+    "revision": "71661f5f3765686e7716e455d7080cd2"
   },
   {
     "url": "vue/Vue中插件开发的四种方式.html",
-    "revision": "b8a52e421c1709c50e531eaf4c10983d"
+    "revision": "689360ecb0cec9cf7fa159237f99bd51"
   },
   {
     "url": "vue/Vue使用render函数渲染组件.html",
-    "revision": "2be926912c5ca11ea55f7227f5ec4f46"
+    "revision": "8ff3be81c2906b810b744a3abab2e8db"
   },
   {
     "url": "vue/Vue及React单向数据流的理解.html",
-    "revision": "815b55a7d1b2e73ba1df6e9d2d00e9c9"
+    "revision": "6931973c10df2c4439d56b356ef96e8e"
   },
   {
     "url": "vue/Vue父组件使用scoped无法修改子组件样式.html",
-    "revision": "09b02abdc6352a8c508d1637c5767f1e"
+    "revision": "0428e9faf75b0d4304e59c6081795dba"
   },
   {
     "url": "vue/Vue路由变化页面没有刷新解决办法.html",
-    "revision": "a16c9d570866a6fb95325c479d85ab6a"
+    "revision": "e6669e81981a39829d3f82c0bb8ee505"
   },
   {
     "url": "vue/你所忽略的Vue.html",
-    "revision": "afe417f2a28bd5660700c2dabe8ef9dd"
+    "revision": "8ca5fb68de1fd6e5a81d6b47de213b7a"
   },
   {
     "url": "vue/如何添加PWA.html",
-    "revision": "0ef5645da135ab5f19f1e655091bad94"
+    "revision": "5448496e4401a3e68ef43a4fea8d2b6b"
   }
 ].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
