@@ -3,6 +3,6 @@
 
 ## 在线地址[mrgaogang.github.io/](mrgaogang.github.io)
 
-## 国内地址[gaogangsever.cn](https://gaogangsever.cn/)
+## 国内地址[gaogangsever.cn](https://blog.gaogangsever.cn/)
 
 
